@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Rive Digitals Logo">
+  <rect width="200" height="200" fill="#06141F"/>
+  <!-- White architectural monogram frame matching uploaded brand mark -->
+  <path
+    d="M72 68H132V132H100V104H112V120H120V80H84V120H90V132H72V68Z"
+    fill="#FFFFFF"
+  />
+  <!-- Center-left coral-rose square node -->
+  <rect x="91" y="95" width="9" height="9" fill="#D86875"/>
+</svg>

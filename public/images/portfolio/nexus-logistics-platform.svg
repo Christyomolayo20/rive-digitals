@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none" role="img" aria-label="Nexus Freight B2B Web Platform and Quote Architecture Mockup">
+  <rect width="1200" height="800" fill="#06141F"/>
+  <rect x="70" y="60" width="1060" height="680" rx="22" fill="#0C2031" stroke="#1E3D56" stroke-width="2"/>
+  <!-- Top Header -->
+  <rect x="115" y="105" width="140" height="32" rx="6" fill="#18344A"/>
+  <text x="135" y="126" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">NEXUS FREIGHT</text>
+  <rect x="930" y="102" width="155" height="38" rx="8" fill="#D86875"/>
+  <text x="958" y="126" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Request B2B Tariff</text>
+
+  <!-- Main Dashboard Grid -->
+  <rect x="115" y="170" width="600" height="320" rx="16" fill="#06141F" stroke="#1E3D56"/>
+  <text x="150" y="218" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="1">GLOBAL CORRIDOR VISIBILITY</text>
+  <text x="150" y="258" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="28" font-weight="700">Enterprise Supply Chain Portal</text>
+  <!-- Route Map Nodes -->
+  <path d="M165 380 Q 310 290, 440 365 T 650 320" stroke="#D86875" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+  <circle cx="165" cy="380" r="9" fill="#FFFFFF"/>
+  <circle cx="440" cy="365" r="9" fill="#D86875"/>
+  <circle cx="650" cy="320" r="11" fill="#10B981"/>
+  <text x="150" y="420" fill="#94A3B8" font-family="monospace" font-size="13">ORIGIN: LAGOS / TEMA</text>
+  <text x="380" y="420" fill="#94A3B8" font-family="monospace" font-size="13">HUB: ROTTERDAM</text>
+  <text x="560" y="420" fill="#10B981" font-family="monospace" font-size="13">ON SCHEDULE</text>
+
+  <!-- Right Interactive Quote Estimator Card -->
+  <rect x="745" y="170" width="340" height="515" rx="16" fill="#FFFFFF"/>
+  <text x="780" y="220" fill="#06141F" font-family="system-ui, sans-serif" font-size="20" font-weight="800">Structured Freight Enquiry</text>
+  <text x="780" y="248" fill="#64748B" font-family="system-ui, sans-serif" font-size="13">Guided multi-step B2B qualification</text>
+  <rect x="780" y="275" width="270" height="46" rx="8" fill="#F1F5F9"/>
+  <text x="798" y="303" fill="#06141F" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Container Load (FCL / LCL)</text>
+  <rect x="780" y="335" width="270" height="46" rx="8" fill="#F1F5F9"/>
+  <text x="798" y="363" fill="#06141F" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Customs &amp; Port Documentation</text>
+  <rect x="780" y="395" width="270" height="46" rx="8" fill="#FDF2F3" stroke="#D86875"/>
+  <text x="798" y="423" fill="#C84B59" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Dedicated Account Routing</text>
+  <rect x="780" y="595" width="270" height="52" rx="10" fill="#06141F"/>
+  <text x="842" y="626" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Generate Scope Brief</text>
+
+  <!-- Bottom Left KPI Cards -->
+  <rect x="115" y="515" width="288" height="170" rx="16" fill="#06141F" stroke="#1E3D56"/>
+  <text x="145" y="560" fill="#D86875" font-family="system-ui, sans-serif" font-size="13" font-weight="700">INFORMATION ARCHITECTURE</text>
+  <text x="145" y="605" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="22" font-weight="700">6 Service Verticals</text>
+  <text x="145" y="638" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="14">Consolidated from 40+ legacy pages</text>
+
+  <rect x="427" y="515" width="288" height="170" rx="16" fill="#06141F" stroke="#1E3D56"/>
+  <text x="457" y="560" fill="#10B981" font-family="system-ui, sans-serif" font-size="13" font-weight="700">ENQUIRY QUALITY</text>
+  <text x="457" y="605" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="22" font-weight="700">Structured Specs</text>
+  <text x="457" y="638" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="14">Complete cargo details on first contact</text>
+</svg>

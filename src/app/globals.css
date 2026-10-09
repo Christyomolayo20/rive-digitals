@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ==========================================================================
+   * RIVE DIGITALS — CENTRALISED BRAND DESIGN TOKENS
+   * Derived directly from the official Rive Digitals geometric monogram logo:
+   * - Deep Midnight Navy canvas (#06141F)
+   * - Crisp Architectural White (#FFFFFF)
+   * - Coral Rose focal node (#D86875)
+   * ========================================================================== */
+  --brand-navy: #06141f;
+  --brand-navy-elevated: #0c2031;
+  --brand-navy-surface: #112a40;
+  --brand-navy-border: #18344a;
+
+  --brand-coral: #d86875;
+  --brand-coral-strong: #c84b59;
+  --brand-coral-hover: #e07a86;
+  --brand-coral-light: #fdf2f3;
+  --brand-coral-muted: #f9d5d9;
+
+  --brand-canvas: #f8fafc;
+  --brand-surface: #ffffff;
+  --brand-slate: #475569;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--brand-canvas);
+    color: var(--brand-navy);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
+
+/* Respect user operating system reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
