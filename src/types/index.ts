@@ -21,6 +21,8 @@ export interface ServiceItem {
     | "TrendingUp"
     | "PenTool"
     | "Compass";
+  image: string;
+  imageAlt: string;
   summary: string;
   description: string;
   problemSolved: string;
@@ -83,7 +85,7 @@ export interface BlogArticle {
   publishedAt: string;
   updatedAt?: string;
   readingTimeMinutes: number;
-  authorRole: string; // Avoids inventing fictional individual names; uses editorial team role
+  authorRole: string;
   coverImage: string;
   coverImageAlt: string;
   sections: {
@@ -134,6 +136,25 @@ export interface TeamMember {
   image?: string;
 }
 
+export type EnquiryStatus = "new" | "in_review" | "responded" | "archived";
+
+export interface EnquiryRecord {
+  id?: string;
+  referenceId: string;
+  submittedAt: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  company: string;
+  service: string;
+  budget: string;
+  description: string;
+  preferredContact: "email" | "phone" | "whatsapp";
+  privacyConsent: boolean;
+  status: EnquiryStatus;
+  notes?: string;
+}
+
 export interface SiteConfig {
   name: string;
   legalName: string;
@@ -168,11 +189,8 @@ export interface SiteConfig {
     secondaryHref: string;
   };
   features: {
-    /** Only render testimonials section when genuine verified testimonials are supplied */
     showTestimonials: boolean;
-    /** Only render individual team profiles when actual team member data is supplied */
     showTeamProfiles: boolean;
-    /** Enable optional privacy-conscious analytics with user consent */
     enableAnalytics: boolean;
   };
   serviceConfirmationNotice: string;

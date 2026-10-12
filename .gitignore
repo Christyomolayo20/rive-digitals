@@ -13,10 +13,12 @@
 # production
 /build
 
-# misc
+# misc & local runtime stores
 .DS_Store
 *.pem
 .local-enquiries.json
+.local-cms-store.json
+.local-supabase-config.json
 
 # debug
 npm-debug.log*

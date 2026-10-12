@@ -7,7 +7,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Users,
-  AlertTriangle,
 } from "lucide-react";
 import { servicesData, getServiceBySlug } from "@/data/services";
 import { portfolioProjects } from "@/data/portfolio";
@@ -48,6 +47,7 @@ export function generateMetadata({
       title: `${service.title} | ${siteConfig.name}`,
       description: service.summary,
       url: `${siteConfig.url}/services/${service.slug}`,
+      images: [service.image],
     },
   };
 }
@@ -82,84 +82,66 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="bg-brand-navy text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-brand-navy-border">
+      {/* Visual Split Hero */}
+      <section className="bg-brand-navy text-white py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-brand-navy-border">
         <div className="mx-auto max-w-7xl">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-300 hover:text-brand-coral transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-300 hover:text-brand-coral transition-colors mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to All Services</span>
+            <span>All Services</span>
           </Link>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-center">
-            <div className="lg:col-span-8">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-navy-elevated border border-brand-navy-border text-brand-coral">
-                  <ServiceIcon name={service.iconName} className="h-6 w-6" />
+            <div className="lg:col-span-6 space-y-5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-navy-elevated border border-brand-navy-border text-brand-coral">
+                  <ServiceIcon name={service.iconName} className="h-5 w-5" />
                 </span>
-                <span className="rounded-full bg-brand-navy-elevated border border-brand-navy-border px-3.5 py-1 text-xs font-semibold text-slate-300">
+                <span className="rounded-full bg-brand-navy-elevated border border-brand-navy-border px-3 py-1 text-xs font-semibold text-slate-300">
                   {service.category}
                 </span>
-                <span className="rounded-full bg-brand-coral/20 px-3.5 py-1 text-xs font-semibold text-brand-coral">
+                <span className="rounded-full bg-brand-coral/20 px-3 py-1 text-xs font-semibold text-brand-coral">
                   {service.offeringStatus === "core"
                     ? "Core Capability"
-                    : "Configurable Engagement"}
+                    : "Custom Scope"}
                 </span>
               </div>
 
-              <h1 className="mt-6 font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+              <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
                 {service.title}
               </h1>
 
-              <p className="mt-5 text-base sm:text-lg leading-relaxed text-slate-300">
+              <p className="text-base sm:text-lg leading-relaxed text-slate-300">
                 {service.description}
               </p>
 
-              {service.statusNote && (
-                <p className="mt-4 rounded-xl bg-brand-navy-elevated border border-brand-navy-border p-4 text-xs sm:text-sm text-slate-300">
-                  <strong className="text-white">Scope Note:</strong>{" "}
-                  {service.statusNote}
-                </p>
-              )}
-
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="pt-2 flex flex-wrap gap-3.5">
                 <Link
                   href={`/contact?service=${service.slug}`}
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-7 py-4 text-base font-semibold text-white shadow-sm hover:bg-brand-coral transition-colors"
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-6 py-3.5 text-sm sm:text-base font-semibold text-white shadow-sm hover:bg-brand-coral transition-colors"
                 >
                   <span>{service.ctaLabel}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/work"
-                  className="inline-flex items-center gap-2 rounded-xl border border-brand-navy-border bg-brand-navy-elevated px-6 py-4 text-base font-semibold text-white hover:border-slate-500 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-xl border border-brand-navy-border bg-brand-navy-elevated px-6 py-3.5 text-sm sm:text-base font-semibold text-white hover:border-slate-500 transition-colors"
                 >
-                  <span>Explore Case Studies</span>
+                  <span>View Related Work</span>
                 </Link>
               </div>
             </div>
 
-            {/* Problem Solved Highlight Card */}
-            <div className="lg:col-span-4">
-              <div className="rounded-2xl bg-brand-navy-elevated border border-brand-navy-border p-6 sm:p-8">
-                <div className="flex items-center gap-2.5 text-brand-coral font-semibold text-xs uppercase tracking-wider">
-                  <AlertTriangle className="h-4 w-4" />
-                  <span>Business Problem Solved</span>
-                </div>
-                <p className="mt-4 text-base leading-relaxed text-white font-medium">
-                  {service.problemSolved}
-                </p>
-                <div className="mt-6 pt-5 border-t border-brand-navy-border">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Tailored Proposal
-                  </p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    Deliverables and timelines are scoped around your specific
-                    requirements after an initial discovery review.
-                  </p>
-                </div>
+            <div className="lg:col-span-6">
+              <div className="overflow-hidden rounded-3xl border border-brand-navy-border shadow-2xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={service.image}
+                  alt={service.imageAlt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
               </div>
             </div>
           </div>
@@ -167,29 +149,24 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
       </section>
 
       {/* Deliverables & Ideal Customer */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl grid grid-cols-1 gap-10 lg:grid-cols-12">
-          {/* Key Deliverables */}
-          <div className="lg:col-span-7 rounded-2xl bg-white border border-slate-200 p-7 sm:p-10 shadow-card">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-7 rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 shadow-card">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-coral-strong">
-              What Is Included
+              Included Deliverables
             </span>
-            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-brand-navy">
-              Key Project Deliverables
+            <h2 className="mt-1.5 font-display text-2xl font-extrabold text-brand-navy">
+              What You Receive
             </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              Every engagement is documented in a written statement of work and
-              typically includes the following core outputs:
-            </p>
 
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {service.deliverables.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 rounded-xl bg-slate-50 p-4 border border-slate-100"
+                  className="flex items-start gap-2.5 rounded-2xl bg-slate-50 p-4 border border-slate-100"
                 >
                   <CheckCircle2 className="h-5 w-5 text-brand-coral-strong shrink-0 mt-0.5" />
-                  <span className="text-sm sm:text-base font-medium text-brand-navy">
+                  <span className="text-xs sm:text-sm font-semibold text-brand-navy">
                     {item}
                   </span>
                 </li>
@@ -197,21 +174,20 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
             </ul>
           </div>
 
-          {/* Ideal Customer Profile */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-2xl bg-white border border-slate-200 p-7 sm:p-8 shadow-card">
+          <div className="lg:col-span-5 rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-card flex flex-col justify-between">
+            <div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-coral-strong">
                 <Users className="h-4 w-4" />
-                <span>Who This Is For</span>
+                <span>Ideal For</span>
               </div>
-              <h2 className="mt-2 font-display text-2xl font-bold text-brand-navy">
-                Ideal Client Profile
+              <h2 className="mt-1.5 font-display text-2xl font-bold text-brand-navy">
+                Who This Service Helps
               </h2>
-              <ul className="mt-5 space-y-3.5">
+              <ul className="mt-5 space-y-3">
                 {service.idealCustomer.map((profile) => (
                   <li
                     key={profile}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-slate-700"
+                    className="flex items-start gap-3 text-sm text-slate-700"
                   >
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-brand-coral-strong shrink-0" />
                     <span>{profile}</span>
@@ -220,52 +196,37 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
               </ul>
             </div>
 
-            <div className="rounded-2xl bg-brand-navy text-white p-7 sm:p-8 border border-brand-navy-border">
-              <h3 className="font-display text-xl font-bold">
-                Need a Custom Combination?
-              </h3>
-              <p className="mt-2 text-sm text-slate-300 leading-relaxed">
-                We frequently pair{" "}
-                <strong className="text-white">{service.shortTitle}</strong>{" "}
-                with complementary capabilities to ensure a cohesive launch.
+            <div className="mt-6 rounded-2xl bg-brand-canvas p-4 border border-slate-200">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                Problem Solved
               </p>
-              <Link
-                href={`/contact?service=${service.slug}`}
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-5 py-3 text-sm font-semibold text-white hover:bg-brand-coral transition-colors"
-              >
-                <span>Request a Tailored Scope</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <p className="mt-1 text-xs sm:text-sm text-brand-navy font-medium">
+                {service.problemSolved}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Expected Project Workflow */}
-      <section className="bg-white border-y border-slate-200 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      {/* 4-Step Workflow */}
+      <section className="bg-white border-y border-slate-200 py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-coral-strong">
-              Expected Project Workflow
-            </span>
-            <h2 className="mt-2 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
-              How We Deliver {service.shortTitle}
-            </h2>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-brand-navy mb-8">
+            Delivery Workflow
+          </h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {service.workflow.map((step) => (
               <div
                 key={step.stepNumber}
                 className="rounded-2xl bg-brand-canvas border border-slate-200 p-6"
               >
-                <span className="font-display text-2xl font-extrabold text-brand-coral-strong">
+                <span className="font-display text-xl font-extrabold text-brand-coral-strong">
                   {step.stepNumber}
                 </span>
-                <h3 className="mt-3 font-display text-lg font-bold text-brand-navy">
+                <h3 className="mt-2 font-display text-base font-bold text-brand-navy">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                <p className="mt-1.5 text-xs sm:text-sm text-slate-600">
                   {step.description}
                 </p>
               </div>
@@ -275,26 +236,20 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
       </section>
 
       {/* Related Portfolio Previews */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-coral-strong">
-                Proof of Execution
-              </span>
-              <h2 className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-brand-navy">
-                Selected Work Showcases
-              </h2>
-            </div>
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="font-display text-2xl font-extrabold text-brand-navy">
+              Related Work
+            </h2>
             <Link
               href="/work"
-              className="text-sm font-semibold text-brand-navy hover:text-brand-coral-strong"
+              className="text-xs sm:text-sm font-semibold text-brand-navy hover:text-brand-coral-strong"
             >
-              View All Projects →
+              All Projects →
             </Link>
           </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {relatedProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
@@ -303,8 +258,6 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
       </section>
 
       <CtaBanner
-        title={`Ready to Discuss Your ${service.shortTitle} Project?`}
-        subtitle="Send us your project brief and we will get back to you within 1–2 business days with recommended next steps."
         primaryLabel={service.ctaLabel}
         primaryHref={`/contact?service=${service.slug}`}
       />

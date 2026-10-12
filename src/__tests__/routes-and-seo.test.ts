@@ -5,6 +5,7 @@ import { NextRequest } from "next/server";
 import sitemap from "@/app/sitemap";
 import robots from "@/app/robots";
 import { POST } from "@/app/api/contact/route";
+import { GET as AdminGET } from "@/app/api/admin/route";
 import { resetRateLimitStore } from "@/lib/rate-limit";
 import { mainNavLinks, siteConfig } from "@/config/site";
 import { servicesData } from "@/data/services";
@@ -48,7 +49,7 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
     expect(robotsConfig.sitemap).toBe(`${siteConfig.url}/sitemap.xml`);
   });
 
-  it("verifies that the uploaded brand logo and all portfolio SVG assets exist on disk in public/", () => {
+  it("verifies that the uploaded brand logo and all photorealistic image assets exist on disk in public/", () => {
     const publicDir = path.join(process.cwd(), "public");
 
     // Brand logos
@@ -59,6 +60,21 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
       fs.existsSync(path.join(publicDir, siteConfig.logo.svgFallback))
     ).toBe(true);
     expect(fs.existsSync(path.join(publicDir, "favicon.svg"))).toBe(true);
+
+    // Hero & About photorealistic images
+    expect(
+      fs.existsSync(path.join(publicDir, "/images/hero-showcase.jpg"))
+    ).toBe(true);
+    expect(
+      fs.existsSync(path.join(publicDir, "/images/about-studio.jpg"))
+    ).toBe(true);
+
+    // Service cover images
+    for (const service of servicesData) {
+      if (service.image) {
+        expect(fs.existsSync(path.join(publicDir, service.image))).toBe(true);
+      }
+    }
 
     // Portfolio thumbnails & gallery images
     for (const project of portfolioProjects) {
@@ -92,6 +108,35 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
   });
 });
 
+describe("Rive Digitals — Admin API & Supabase CMS Endpoint", () => {
+  it("rejects unauthenticated requests to /api/admin with 401", async () => {
+    const req = new NextRequest("http://localhost:3000/api/admin", {
+      method: "GET",
+      headers: {
+        "x-admin-passcode": "wrong-passcode",
+      },
+    });
+    const res = await AdminGET(req);
+    expect(res.status).toBe(401);
+  });
+
+  it("returns enquiries, projects, services, and supabase status when authenticated", async () => {
+    const req = new NextRequest("http://localhost:3000/api/admin", {
+      method: "GET",
+      headers: {
+        "x-admin-passcode": process.env.ADMIN_PASSCODE || "rive-admin-2026",
+      },
+    });
+    const res = await AdminGET(req);
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(Array.isArray(json.enquiries)).toBe(true);
+    expect(Array.isArray(json.projects)).toBe(true);
+    expect(Array.isArray(json.services)).toBe(true);
+    expect(json.supabase).toBeDefined();
+  });
+});
+
 describe("Rive Digitals — Production Unconfigured Integration Failure State", () => {
   const originalEnv = { ...process.env };
 
@@ -109,6 +154,8 @@ describe("Rive Digitals — Production Unconfigured Integration Failure State", 
     delete process.env.ENQUIRY_WEBHOOK_URL;
     delete process.env.SUPABASE_URL;
     delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+    delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     (process.env as Record<string, string | undefined>).NODE_ENV = "production";
 
     const req = new NextRequest("http://localhost:3000/api/contact", {

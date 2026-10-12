@@ -4,25 +4,10 @@ import path from "path";
 import { enquirySchema } from "@/lib/validation";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { siteConfig } from "@/config/site";
+import { getSupabaseCredentials, supabaseFetch } from "@/lib/supabase";
 
-/**
- * POST /api/contact
- * Server-side handler for Rive Digitals project enquiries and quote requests.
- *
- * Security & Integrity Guarantees:
- * 1. Sliding-window rate limiting per IP address.
- * 2. Honeypot anti-bot verification (`website_hp`).
- * 3. Strict server-side Zod validation and plain-text sanitization.
- * 4. Truthful integration delivery:
- *    - Delivers via Resend API if `RESEND_API_KEY` is configured.
- *    - Delivers via Webhook/CRM if `ENQUIRY_WEBHOOK_URL` is configured.
- *    - Persists to Supabase if `SUPABASE_URL` & `SUPABASE_SERVICE_ROLE_KEY` are configured.
- *    - Spools locally to `.local-enquiries.json` ONLY in non-production / explicit local test mode.
- *    - Never fakes success if production integrations are missing.
- */
 export async function POST(request: NextRequest) {
   try {
-    // 1. Identify client IP for rate limiting
     const forwardedFor = request.headers.get("x-forwarded-for");
     const clientIp = forwardedFor
       ? forwardedFor.split(",")[0].trim()
@@ -47,7 +32,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Parse request body safely
     let rawBody: unknown;
     try {
       rawBody = await request.json();
@@ -62,7 +46,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Check anti-bot honeypot before full processing
     if (
       rawBody &&
       typeof rawBody === "object" &&
@@ -80,7 +63,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Validate and sanitize with shared Zod schema
     const parsed = enquirySchema.safeParse(rawBody);
     if (!parsed.success) {
       const firstIssue = parsed.error.issues[0];
@@ -113,11 +95,39 @@ export async function POST(request: NextRequest) {
       description: enquiry.description,
       preferredContact: enquiry.preferredContact,
       privacyConsent: enquiry.privacyConsent,
+      status: "new" as const,
     };
 
     const deliveredChannels: string[] = [];
 
-    // 5A. Optional Resend Transactional Email Integration
+    // 1. Supabase Postgres Persistence (via env vars or Admin Studio runtime config)
+    const sbCreds = await getSupabaseCredentials();
+    if (sbCreds.source !== "unconfigured") {
+      const sbResult = await supabaseFetch("enquiries", {
+        method: "POST",
+        prefer: "return=minimal",
+        body: {
+          reference_id: referenceId,
+          full_name: enquiry.fullName,
+          email: enquiry.email,
+          phone: enquiry.phone || null,
+          company: enquiry.company,
+          service: enquiry.service,
+          budget: enquiry.budget || null,
+          description: enquiry.description,
+          preferred_contact: enquiry.preferredContact,
+          privacy_consent: enquiry.privacyConsent,
+          status: "new",
+          created_at: submittedAt,
+        },
+      });
+
+      if (sbResult.ok) {
+        deliveredChannels.push("supabase");
+      }
+    }
+
+    // 2. Resend Transactional Email Integration
     const resendApiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.ENQUIRY_TO_EMAIL || siteConfig.contact.email;
     const fromEmail =
@@ -159,7 +169,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 5B. Optional Webhook / CRM Integration
+    // 3. Optional Webhook Integration
     const webhookUrl = process.env.ENQUIRY_WEBHOOK_URL;
     if (webhookUrl) {
       const webhookResponse = await fetch(webhookUrl, {
@@ -175,44 +185,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 5C. Optional Supabase Persistence Integration
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (supabaseUrl && supabaseKey) {
-      const sbResponse = await fetch(`${supabaseUrl}/rest/v1/enquiries`, {
-        method: "POST",
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-          "Content-Type": "application/json",
-          Prefer: "return=minimal",
-        },
-        body: JSON.stringify({
-          reference_id: referenceId,
-          full_name: enquiry.fullName,
-          email: enquiry.email,
-          phone: enquiry.phone || null,
-          company: enquiry.company,
-          service: enquiry.service,
-          budget: enquiry.budget || null,
-          description: enquiry.description,
-          preferred_contact: enquiry.preferredContact,
-          privacy_consent: enquiry.privacyConsent,
-          created_at: submittedAt,
-        }),
-      });
-
-      if (sbResponse.ok) {
-        deliveredChannels.push("supabase");
-      }
-    }
-
-    // 5D. Local Development / Staging Spool (Only when not in unconfigured production)
+    // 4. Local Admin Studio Spool
     const allowLocalSpool =
       process.env.NODE_ENV !== "production" ||
       process.env.ALLOW_LOCAL_ENQUIRY_SPOOL === "true";
 
-    if (deliveredChannels.length === 0 && allowLocalSpool) {
+    if (allowLocalSpool) {
       try {
         const spoolFile = path.join(process.cwd(), ".local-enquiries.json");
         let existing: unknown[] = [];
@@ -231,19 +209,20 @@ export async function POST(request: NextRequest) {
           JSON.stringify(existing, null, 2),
           "utf8"
         );
-        deliveredChannels.push("local_spool");
+        if (!deliveredChannels.includes("local_spool")) {
+          deliveredChannels.push("local_spool");
+        }
       } catch {
-        // If filesystem is read-only, only count as delivered if an external service succeeded
+        // Ignore on read-only file systems
       }
     }
 
-    // 6. Truthful Verification: Never fake success if no destination accepted the enquiry
     if (deliveredChannels.length === 0) {
       return NextResponse.json(
         {
           accepted: false,
           code: "INTEGRATION_NOT_CONFIGURED",
-          message: `The enquiry form mail integration is not yet connected in this production environment. Please send your project details directly to ${siteConfig.contact.email}.`,
+          message: `The enquiry database or mail integration is not yet connected in this production environment. Please connect Supabase in /admin or send your project details directly to ${siteConfig.contact.email}.`,
         },
         { status: 503 }
       );

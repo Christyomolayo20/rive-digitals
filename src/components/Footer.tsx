@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig, mainNavLinks } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -21,12 +21,13 @@ export function Footer() {
       </h2>
 
       <div className="mx-auto max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12">
           {/* Column 1: Brand & Contact Info */}
-          <div className="lg:col-span-4 space-y-5">
+          <div className="sm:col-span-2 lg:col-span-4 space-y-5">
             <BrandLogo variant="dark" size="lg" showTagline />
             <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
-              {siteConfig.description}
+              We help ambitious businesses build distinctive brand identities,
+              high-converting websites, and scalable digital growth systems.
             </p>
 
             <div className="space-y-2.5 pt-1 text-sm">
@@ -37,7 +38,7 @@ export function Footer() {
                   onClick={() =>
                     trackEvent("email_clicked", { location: "footer" })
                   }
-                  className="hover:text-white underline-offset-4 hover:underline"
+                  className="hover:text-white underline-offset-4 hover:underline break-all"
                 >
                   {siteConfig.contact.email}
                 </a>
@@ -54,9 +55,9 @@ export function Footer() {
           </div>
 
           {/* Column 2: Services */}
-          <div className="sm:col-span-6 lg:col-span-3">
+          <div className="lg:col-span-3">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
-              Digital Services
+              Services
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               {servicesData.map((service) => (
@@ -73,9 +74,9 @@ export function Footer() {
           </div>
 
           {/* Column 3: Company Navigation */}
-          <div className="sm:col-span-6 lg:col-span-2">
+          <div className="lg:col-span-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
-              Company
+              Navigation
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               {mainNavLinks.map((link) => (
@@ -90,20 +91,21 @@ export function Footer() {
               ))}
               <li>
                 <Link
-                  href="/contact?intent=quote"
-                  className="text-brand-coral font-medium hover:underline"
+                  href="/admin"
+                  className="inline-flex items-center gap-1.5 text-slate-400 hover:text-brand-coral transition-colors"
                 >
-                  Request a Quote
+                  <ShieldCheck className="h-3.5 w-3.5 text-brand-coral" />
+                  <span>Admin Portal</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Connect & Legal */}
-          <div className="sm:col-span-12 lg:col-span-3 space-y-6">
+          {/* Column 4: Connect */}
+          <div className="sm:col-span-2 lg:col-span-3 space-y-6">
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
-                Connect With Us
+                Social Channels
               </h3>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {siteConfig.socials.map((social) => (
@@ -126,18 +128,18 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="rounded-xl bg-brand-navy-elevated border border-brand-navy-border p-4">
+            <div className="rounded-2xl bg-brand-navy-elevated border border-brand-navy-border p-4">
               <p className="text-xs font-semibold text-white">
-                Ready to start a conversation?
+                Start Your Project
               </p>
               <p className="mt-1 text-xs text-slate-400">
-                Share your goals and we will respond within 1–2 business days.
+                Receive a tailored proposal within 1–2 business days.
               </p>
               <Link
-                href="/contact"
+                href="/contact?intent=quote"
                 className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-coral hover:underline"
               >
-                Go to Project Enquiry Form →
+                Request a Quote →
               </Link>
             </div>
           </div>
@@ -148,7 +150,7 @@ export function Footer() {
           <p>
             &copy; {currentYear} {siteConfig.legalName}. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
               href="/privacy"
               className="hover:text-white transition-colors"
@@ -176,7 +178,7 @@ export function Footer() {
                 }}
                 className="hover:text-white transition-colors underline underline-offset-4"
               >
-                Cookie &amp; Analytics Preferences
+                Privacy Preferences
               </button>
             )}
           </div>

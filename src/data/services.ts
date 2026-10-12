@@ -2,62 +2,57 @@ import { ServiceItem } from "@/types";
 
 /**
  * CENTRALISED SERVICES CONFIGURATION
- * Manage all service offerings, descriptions, deliverables, workflows, and availability status here.
- * Do not hardcode service details inside individual UI components.
- * Note: Pricing and exact timelines are intentionally omitted and scoped per project brief.
+ * Concise, visual-first service definitions paired with photorealistic studio imagery.
  */
 export const servicesData: ServiceItem[] = [
   {
     id: "svc-brand-identity",
     slug: "brand-identity-graphic-design",
-    title: "Brand Identity & Graphic Design",
+    title: "Brand Identity & Design",
     shortTitle: "Brand Identity",
     category: "Branding & Design",
     offeringStatus: "core",
     iconName: "Palette",
+    image: "/images/services/brand-design.jpg",
+    imageAlt:
+      "Brand identity studio desk with midnight navy and coral color swatches, logo grid tablet, and brand guidelines book",
     summary:
-      "Cohesive visual systems, logo architecture, and brand guidelines that make your business unmistakable across digital and print touchpoints.",
+      "Distinctive logos, color systems, and brand guidelines that make your business unforgettable.",
     description:
-      "A strong brand is more than a decorative mark—it is a strategic asset that signals credibility before a single word is read. We design clear, adaptable visual identities backed by practical documentation so your team can maintain consistency everywhere your audience encounters you.",
+      "We craft cohesive visual identities backed by practical style guides so your brand looks authoritative across web, print, and social channels.",
     problemSolved:
-      "Eliminates fragmented, inconsistent visuals and generic templates that undermine customer trust and make an established business appear unpolished.",
+      "Eliminates inconsistent visuals and generic templates that weaken customer trust.",
     deliverables: [
-      "Primary logo mark, secondary lockups, and responsive monogram variants",
-      "Defined color architecture (HEX, RGB, CMYK) with accessibility contrast pairings",
-      "Typographic hierarchy and licensing recommendations for web and print",
-      "Comprehensive Brand Style Guide PDF for internal teams and partners",
-      "Core collateral templates (pitch deck master, social layouts, business stationery)",
-      "Production-ready vector and raster asset library (SVG, PNG, PDF)",
+      "Primary logo, monogram & responsive lockups",
+      "Accessible color palette & typography system",
+      "Comprehensive Brand Guidelines book (PDF)",
+      "Pitch deck & social media visual templates",
     ],
     idealCustomer: [
-      "Startups preparing for market launch or institutional fundraising",
-      "Growing SMBs whose visual identity no longer reflects the quality of their service",
-      "Organisations consolidating multiple offerings under a unified brand system",
+      "Startups launching or preparing for investment",
+      "Growing businesses upgrading their market positioning",
+      "Companies unifying multiple products under one brand",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Brand Audit & Market Discovery",
-        description:
-          "We review your existing assets, audience expectations, and competitive landscape to define a clear visual direction.",
+        title: "Brand Discovery",
+        description: "Audit your market, audience, and visual goals.",
       },
       {
         stepNumber: "02",
-        title: "Concept Architecture & Exploration",
-        description:
-          "We develop distinct territories showing how the mark, typography, and color system perform in real-world contexts.",
+        title: "Identity Concepts",
+        description: "Explore distinct logo, color, and type directions.",
       },
       {
         stepNumber: "03",
-        title: "Refinement & Systematisation",
-        description:
-          "Based on structured feedback, we refine the selected direction and stress-test legibility across small and large viewports.",
+        title: "Refinement",
+        description: "Stress-test across digital and print formats.",
       },
       {
         stepNumber: "04",
-        title: "Asset Packaging & Guidelines Handover",
-        description:
-          "We deliver organized master files alongside a clear brand usage manual.",
+        title: "Master Handover",
+        description: "Deliver vector files and brand style guide.",
       },
     ],
     ctaLabel: "Request a Branding Quote",
@@ -71,216 +66,204 @@ export const servicesData: ServiceItem[] = [
     category: "Engineering & UX",
     offeringStatus: "core",
     iconName: "Code2",
+    image: "/images/services/web-engineering.jpg",
+    imageAlt:
+      "Modern software engineering workstation displaying responsive desktop and mobile website layouts",
     summary:
-      "Fast, accessible, conversion-focused business websites and web applications engineered for clarity, search visibility, and maintainability.",
+      "Fast, mobile-first websites and web apps engineered to convert visitors into paying clients.",
     description:
-      "Your website is your primary commercial hub. We combine conversion-focused information architecture, responsive interface design, and modern full-stack engineering to build websites that communicate value immediately and turn visitors into qualified enquiries.",
+      "We combine conversion-focused UI/UX design with modern full-stack engineering to build fast, SEO-ready websites you can easily manage.",
     problemSolved:
-      "Replaces slow, confusing, or hard-to-update websites that leak prospective clients and fail to work reliably on mobile devices.",
+      "Replaces slow, outdated websites that lose mobile visitors and fail to generate leads.",
     deliverables: [
-      "Information architecture, sitemap, and conversion-focused wireframes",
-      "Bespoke UI design system tailored to your brand identity across mobile, tablet, and desktop",
-      "Clean, responsive frontend and backend implementation using modern web standards",
-      "Validated enquiry and quote forms with spam protection and notification routing",
-      "Technical SEO foundation (semantic HTML, structured metadata, XML sitemap, Open Graph)",
-      "Documentation and handover training for ongoing content updates",
+      "Custom responsive UI/UX design (Mobile, Tablet & Desktop)",
+      "Full-stack Next.js & TypeScript web implementation",
+      "Validated enquiry forms with database & email routing",
+      "Technical SEO, analytics & admin CMS setup",
     ],
     idealCustomer: [
-      "B2B and professional service firms needing a credible lead-generation platform",
-      "Established brands migrating from outdated or slow website builders",
-      "Founders launching new digital products or corporate flagships",
+      "Service businesses needing a reliable lead engine",
+      "Brands migrating from slow, rigid website builders",
+      "Founders launching modern digital platforms",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Requirements & Conversion Mapping",
-        description:
-          "We define user journeys, page hierarchy, technical integrations, and primary conversion goals.",
+        title: "UX & Sitemap",
+        description: "Map user journeys and conversion goals.",
       },
       {
         stepNumber: "02",
-        title: "UX Wireframing & Visual Design",
-        description:
-          "We design key layouts and interactive component states with mobile-first responsiveness.",
+        title: "Interface Design",
+        description: "Craft high-contrast, responsive screen layouts.",
       },
       {
         stepNumber: "03",
-        title: "Full-Stack Development & Content Integration",
-        description:
-          "We build reusable components, configure forms and CMS structures, and optimize performance.",
+        title: "Clean Engineering",
+        description: "Build fast frontend, API routes, and CMS controls.",
       },
       {
         stepNumber: "04",
-        title: "Quality Assurance & Production Launch",
-        description:
-          "We test across devices, verify accessibility and SEO metadata, and assist with deployment.",
+        title: "QA & Launch",
+        description: "Test across devices and deploy to production.",
       },
     ],
-    ctaLabel: "Discuss a Website Project",
+    ctaLabel: "Start a Website Project",
     featured: true,
   },
   {
     id: "svc-digital-strategy",
     slug: "business-branding-digital-strategy",
-    title: "Business Branding & Digital Strategy",
+    title: "Brand & Digital Strategy",
     shortTitle: "Digital Strategy",
     category: "Strategy & Advisory",
     offeringStatus: "core",
     iconName: "Compass",
+    image: "/images/portfolio/monarch-advisory.jpg",
+    imageAlt:
+      "Executive strategy presentation and corporate brand identity kit on a walnut boardroom table",
     summary:
-      "Structured positioning, value proposition clarity, and digital roadmaps that align your online channels with measurable commercial objectives.",
+      "Sharp market positioning, messaging clarity, and conversion roadmaps aligned with revenue goals.",
     description:
-      "Tactics without strategy lead to wasted budget. We work with leadership teams to sharpen market positioning, clarify customer messaging, and map out a practical digital roadmap—ensuring your brand, website, and acquisition channels work together.",
+      "We work with leadership teams to clarify value propositions, audit conversion bottlenecks, and structure a practical digital growth roadmap.",
     problemSolved:
-      "Resolves unclear market positioning and disconnected digital initiatives where businesses invest in tools or ads without a coherent customer journey.",
+      "Fixes unclear messaging and disconnected digital spending that fails to produce ROI.",
     deliverables: [
-      "Brand positioning framework and value proposition messaging matrix",
-      "Target audience personas and buyer decision-stage mapping",
-      "Audit of current website, brand touchpoints, and competitor positioning",
-      "Prioritised digital growth roadmap with recommended channel architecture",
-      "Conversion rate optimisation (CRO) recommendations for key landing pages",
+      "Positioning & value proposition framework",
+      "Website & conversion rate (CRO) audit",
+      "Buyer journey & channel architecture map",
+      "Prioritised 90-day digital execution roadmap",
     ],
     idealCustomer: [
-      "Leadership teams preparing for a rebrand, product pivot, or new market entry",
-      "Businesses experiencing high website traffic but low enquiry conversion",
-      "Growing companies seeking an objective digital audit before committing capital",
+      "Leadership teams planning a rebrand or market expansion",
+      "Businesses with traffic that isn't converting into enquiries",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Stakeholder Interviews & Diagnostic Audit",
-        description:
-          "We evaluate your business model, current digital footprint, and commercial bottlenecks.",
+        title: "Diagnostic Audit",
+        description: "Review current footprint and bottlenecks.",
       },
       {
         stepNumber: "02",
-        title: "Positioning & Messaging Synthesis",
-        description:
-          "We articulate what sets your business apart and how to communicate it concisely.",
+        title: "Positioning",
+        description: "Define clear messaging that differentiates you.",
       },
       {
         stepNumber: "03",
-        title: "Channel & Conversion Architecture",
-        description:
-          "We map the customer journey from first impression to qualified consultation.",
+        title: "Funnel Mapping",
+        description: "Align landing pages and lead capture flows.",
       },
       {
         stepNumber: "04",
-        title: "Roadmap Delivery & Implementation Briefing",
-        description:
-          "We present a clear execution blueprint that your internal team or Rive Digitals can implement.",
+        title: "Action Roadmap",
+        description: "Hand over a clear execution blueprint.",
       },
     ],
-    ctaLabel: "Book a Strategy Consultation",
+    ctaLabel: "Book a Strategy Session",
     featured: true,
   },
   {
     id: "svc-digital-marketing",
     slug: "digital-marketing-advertising",
-    title: "Digital Marketing & Advertising",
+    title: "Digital Marketing & Campaigns",
     shortTitle: "Digital Marketing",
     category: "Acquisition & Growth",
     offeringStatus: "configurable",
-    statusNote:
-      "Scoped following an initial assessment of your landing page readiness and unit economics.",
+    statusNote: "Scoped around your landing page readiness and acquisition goals.",
     iconName: "TrendingUp",
+    image: "/images/portfolio/solaris-cleantech.jpg",
+    imageAlt:
+      "Laptop and smartphone showing a high-converting digital marketing campaign and ROI calculator",
     summary:
-      "Targeted search and social acquisition campaigns paired with dedicated landing experiences and transparent conversion tracking.",
+      "Targeted search and social campaigns paired with high-converting landing pages.",
     description:
-      "Effective digital advertising requires both disciplined media targeting and high-converting landing pages. We structure acquisition campaigns around clear commercial intent, ensuring every campaign connects to an optimised destination and transparent analytics.",
+      "We pair disciplined ad creative with dedicated landing pages and privacy-first conversion tracking so every campaign drives measurable enquiries.",
     problemSolved:
-      "Stops ad spend waste caused by sending paid traffic to generic homepages without conversion tracking or message alignment.",
+      "Stops wasted ad spend caused by sending paid traffic to generic, untracked pages.",
     deliverables: [
-      "Campaign architecture across search and paid social channels",
-      "Ad creative direction and copy variations aligned with buyer intent",
-      "Campaign-specific landing page recommendations or builds",
-      "Privacy-conscious conversion event tracking and attribution setup",
-      "Periodic performance reviews focused on qualified enquiries rather than vanity metrics",
+      "Search & paid social campaign architecture",
+      "Message-matched campaign landing pages",
+      "Ad creative & copy variations",
+      "Conversion event tracking & ROI reporting",
     ],
     idealCustomer: [
-      "Businesses with a validated offer and conversion-ready website looking to scale lead flow",
-      "Service providers launching time-sensitive B2B or B2C campaigns",
+      "Businesses ready to scale qualified client enquiries",
+      "Brands launching new products or regional campaigns",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Offer & Funnel Readiness Review",
-        description:
-          "We verify that your landing experience and enquiry flow are ready to convert paid traffic.",
+        title: "Funnel Check",
+        description: "Verify landing page conversion readiness.",
       },
       {
         stepNumber: "02",
-        title: "Audience & Creative Structuring",
-        description:
-          "We develop message-matched ad sets, targeting parameters, and tracking events.",
+        title: "Creative Build",
+        description: "Produce targeted ad visuals and copy.",
       },
       {
         stepNumber: "03",
-        title: "Campaign Launch & Calibration",
-        description:
-          "We deploy campaigns and monitor initial search queries, placements, and lead quality.",
+        title: "Launch",
+        description: "Deploy campaigns with verified tracking.",
       },
       {
         stepNumber: "04",
-        title: "Iterative Optimisation & Reporting",
-        description:
-          "We refine budget allocation and creative assets based on verified conversion data.",
+        title: "Optimise",
+        description: "Refine targeting based on lead quality.",
       },
     ],
-    ctaLabel: "Enquire About Marketing",
+    ctaLabel: "Enquire About Campaigns",
     featured: false,
   },
   {
     id: "svc-content-creation",
     slug: "content-creation-marketing",
-    title: "Content Creation & Marketing",
+    title: "Content & Editorial Systems",
     shortTitle: "Content Marketing",
     category: "Content & Editorial",
     offeringStatus: "configurable",
-    statusNote:
-      "Available as part of website launches, brand rollouts, or structured editorial retainers.",
+    statusNote: "Available for website launches or ongoing editorial retainers.",
     iconName: "PenTool",
+    image: "/images/portfolio/lumina-health.jpg",
+    imageAlt:
+      "Accessible content hub and digital portal displayed on desktop and tablet screens",
     summary:
-      "Authoritative website copywriting, case studies, and visual editorial assets that answer buyer questions and build organic search visibility.",
+      "Clear website copywriting, case studies, and SEO articles that build buyer confidence.",
     description:
-      "Clear writing and purposeful visuals are the foundation of digital persuasion. We help businesses articulate complex services in plain, compelling language—producing website copy, structured case studies, and educational insights that earn trust.",
+      "We turn complex technical expertise into concise, persuasive copywriting and visual assets that answer buyer questions and rank in search.",
     problemSolved:
-      "Overcomes internal content bottlenecks and eliminates vague, jargon-heavy copy that fails to explain what a business actually does.",
+      "Eliminates jargon-heavy copy that confuses visitors and stalls sales conversations.",
     deliverables: [
-      "Conversion-focused website copywriting for core pages and service verticals",
-      "Client case study interviews and structured narrative drafting",
-      "SEO-informed editorial articles and industry resource guides",
-      "Visual graphics, diagrams, and presentation assets to support written content",
-      "Editorial style and tone-of-voice guidelines",
+      "Conversion copywriting for core website pages",
+      "Structured client case studies & pitch narratives",
+      "SEO-informed industry articles & guides",
+      "Visual diagrams & editorial graphics",
     ],
     idealCustomer: [
-      "Technical, B2B, and advisory firms that need to translate expertise into accessible client benefits",
-      "Brands building an organic search footprint through helpful educational content",
+      "B2B and advisory firms translating complex services into plain value",
+      "Brands building long-term organic search authority",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Subject-Matter Extraction",
-        description:
-          "We interview your team to capture domain expertise, customer objections, and proof points.",
+        title: "Interviews",
+        description: "Extract domain expertise from your team.",
       },
       {
         stepNumber: "02",
-        title: "Editorial Outline & Search Mapping",
-        description:
-          "We structure page hierarchies and article outlines around real buyer questions.",
+        title: "Content Map",
+        description: "Structure topics around buyer intent.",
       },
       {
         stepNumber: "03",
-        title: "Drafting & Visual Pairing",
-        description:
-          "We write clear, structured copy paired with supporting diagrams or layout specs.",
+        title: "Production",
+        description: "Draft crisp copy paired with visuals.",
       },
       {
         stepNumber: "04",
-        title: "Review, Polish & Publication",
-        description:
-          "We incorporate stakeholder feedback and format content for web publication.",
+        title: "Publish",
+        description: "Format and optimise for web search.",
       },
     ],
     ctaLabel: "Request Content Support",
@@ -289,57 +272,54 @@ export const servicesData: ServiceItem[] = [
   {
     id: "svc-social-media",
     slug: "social-media-management",
-    title: "Social Media Management",
+    title: "Social Media Presence",
     shortTitle: "Social Media",
     category: "Brand Presence",
     offeringStatus: "configurable",
-    statusNote:
-      "Available as a structured brand rollout system or ongoing retainer subject to channel alignment.",
+    statusNote: "Available as a branded template rollout or managed retainer.",
     iconName: "Share2",
+    image: "/images/hero-showcase.jpg",
+    imageAlt:
+      "Branded social media templates and visual identity kit on studio screens",
     summary:
-      "Consistent social channel architecture, branded content templates, and structured publishing workflows that reinforce brand credibility.",
+      "Cohesive social profile branding, reusable templates, and structured content calendars.",
     description:
-      "Prospective clients frequently inspect a company's social channels to verify legitimacy and activity before reaching out. We establish cohesive profile architecture, reusable visual systems, and disciplined content pillars so your social presence reflects the standard of your business.",
+      "We equip your social channels with on-brand visual templates, optimised profile architecture, and consistent publishing workflows.",
     problemSolved:
-      "Replaces dormant or visually disjointed social profiles with a reliable, on-brand communications channel.",
+      "Transforms dormant or off-brand social profiles into a credible trust signal.",
     deliverables: [
-      "Social profile optimization (banners, bios, highlight structures, and CTA routing)",
-      "Defined content pillars aligned with business expertise and audience questions",
-      "Reusable graphic and carousel template systems for consistent publishing",
-      "Monthly editorial calendar planning and copy drafting",
-      "Engagement and performance summaries",
+      "Social profile banners, bio optimization & CTA links",
+      "Reusable carousel & graphic template systems",
+      "Content pillar strategy & monthly calendar",
+      "Performance & engagement review",
     ],
     idealCustomer: [
-      "Brands launching a new identity that need immediate cohesion across social platforms",
-      "Founders and B2B teams seeking a professional, low-friction publishing cadence",
+      "Newly rebranded companies needing cohesive social channels",
+      "Founders seeking a polished, consistent social presence",
     ],
     workflow: [
       {
         stepNumber: "01",
-        title: "Channel Audit & Pillar Definition",
-        description:
-          "We identify which platforms matter to your buyers and define core topic themes.",
+        title: "Channel Audit",
+        description: "Align priority platforms and pillars.",
       },
       {
         stepNumber: "02",
-        title: "Visual Kit & Profile Optimization",
-        description:
-          "We align your social profiles and template kit with your core brand identity.",
+        title: "Template Kit",
+        description: "Design custom social graphic systems.",
       },
       {
         stepNumber: "03",
-        title: "Editorial Calendar Production",
-        description:
-          "We prepare batch content schedules for review ahead of publication.",
+        title: "Calendar",
+        description: "Batch-produce scheduled posts.",
       },
       {
         stepNumber: "04",
-        title: "Publishing & Iteration",
-        description:
-          "We maintain consistent delivery and refine formats based on audience response.",
+        title: "Review",
+        description: "Track engagement and refine topics.",
       },
     ],
-    ctaLabel: "Enquire About Social Systems",
+    ctaLabel: "Enquire About Social",
     featured: false,
   },
 ];

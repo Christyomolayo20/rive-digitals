@@ -2,9 +2,7 @@ import { ProjectCategory, ProjectItem } from "@/types";
 
 /**
  * CENTRALISED PORTFOLIO / CASE STUDIES CONFIGURATION
- * Add, edit, or reorder portfolio projects here without modifying page templates.
- * Note: Outcomes are documented transparently as architectural/qualitative deliverables
- * unless specific client metrics are verified for public disclosure.
+ * Featuring photorealistic, watermark-free showcase imagery and concise narratives.
  */
 export const portfolioCategories: ProjectCategory[] = [
   "Brand Identity",
@@ -17,55 +15,50 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-veridian-financial",
     slug: "veridian-financial-brand-system",
-    title: "Veridian Commercial — Brand Identity & Design System",
-    clientOrIndustry: "Fintech & Corporate Treasury Infrastructure",
+    title: "Veridian Commercial — Brand & UI System",
+    clientOrIndustry: "Fintech & Corporate Treasury",
     disclosureNote:
-      "Representative architectural showcase illustrating our brand identity and design token deliverable standard.",
+      "Representative showcase illustrating our brand identity and design system standard.",
     category: "Brand Identity",
-    tags: ["Visual Identity", "Design Tokens", "Brand Guidelines", "UI Kit"],
-    thumbnail: "/images/portfolio/veridian-fintech-brand.svg",
+    tags: ["Visual Identity", "Design System", "Brand Book", "Fintech UI"],
+    thumbnail: "/images/portfolio/veridian-fintech.jpg",
     thumbnailAlt:
-      "Veridian Financial brand system overview showing monogram construction, color tokens, typography, and corporate card mockup",
+      "Photorealistic MacBook displaying financial analytics dashboard alongside matte navy corporate card and open brand identity guidelines book",
     gallery: [
       {
-        src: "/images/portfolio/veridian-fintech-brand.svg",
-        alt: "Veridian Financial identity system and token sheet",
-        caption:
-          "Unified brand token architecture bridging print collateral and product UI.",
+        src: "/images/portfolio/veridian-fintech.jpg",
+        alt: "Veridian Commercial dashboard, corporate card, and printed brand guidelines",
+        caption: "Unified identity spanning product UI, physical cards, and brand manual.",
       },
       {
-        src: "/images/portfolio/monarch-advisory-rebrand.svg",
-        alt: "Executive presentation and documentation system",
-        caption:
-          "Modular pitch deck and institutional reporting templates built on the core grid.",
+        src: "/images/services/brand-design.jpg",
+        alt: "Brand color swatches and geometric logo construction",
+        caption: "Midnight navy and coral-rose color architecture with strict contrast tokens.",
       },
     ],
     summary:
-      "A comprehensive visual identity and multi-platform design token system built to unify product interfaces, investor decks, and commercial touchpoints.",
+      "Cohesive visual identity, corporate card design, and product UI token system for a B2B treasury platform.",
     brief:
-      "Establish an authoritative, high-contrast brand identity for a B2B treasury platform transitioning from early-stage startup to enterprise partner.",
+      "Create an authoritative brand identity and UI system for a commercial fintech scaling to enterprise clients.",
     challenge:
-      "The organisation's visual assets had evolved piecemeal across product engineering and sales decks, resulting in mismatched colors, low contrast accessibility issues, and inconsistent logo usage.",
+      "Fragmented visuals across product screens and investor decks made the platform feel early-stage.",
     solution:
-      "We engineered a geometric monogram system paired with a strict midnight-and-emerald token palette, accessible typographic scales, and a comprehensive 40-page operational brand manual alongside Figma component tokens.",
+      "We crafted a geometric monogram, matte navy-and-coral color tokens, corporate card artwork, and a 40-page brand book paired with Figma UI components.",
     deliverables: [
-      "Primary geometric monogram and horizontal wordmark lockups",
-      "WCAG AA compliant dark and light mode color token system",
-      "Typographic scale for marketing web, product dashboard, and print",
-      "Executive pitch deck and institutional whitepaper templates",
-      "Complete vector asset package and usage governance guide",
+      "Logo system & geometric monogram",
+      "WCAG AA color & typography tokens",
+      "Corporate card & stationery design",
+      "40-page Brand Guidelines & UI Kit",
     ],
     outcomes: [
       {
-        label: "Design System Cohesion",
-        detail:
-          "Unified 14 separate marketing and product touchpoints under a single documented token library.",
+        label: "14 Touchpoints Unified",
+        detail: "Aligned web, dashboard UI, and pitch decks under one design system.",
         verified: true,
       },
       {
-        label: "Accessibility Compliance",
-        detail:
-          "Achieved full WCAG 2.1 AA contrast compliance across all primary text and interactive UI pairings.",
+        label: "WCAG AA Compliant",
+        detail: "Verified high-contrast legibility across dark and light interfaces.",
         verified: true,
       },
     ],
@@ -75,49 +68,50 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-atelier-kora",
     slug: "atelier-kora-digital-flagship",
-    title: "Atelier Kora — Digital Flagship & Catalogue Architecture",
-    clientOrIndustry: "Architectural Homeware & Design Studio",
+    title: "Atelier Kora — Luxury Digital Flagship",
+    clientOrIndustry: "Architectural Homeware & Design",
     disclosureNote:
-      "Representative showcase demonstrating our high-performance web architecture and editorial catalogue design.",
+      "Representative showcase demonstrating our high-converting web architecture.",
     category: "Web Design & Development",
-    tags: ["Next.js Architecture", "Responsive UX", "Conversion Optimization", "SEO"],
-    thumbnail: "/images/portfolio/atelier-kora-ecommerce.svg",
+    tags: ["Next.js", "Responsive UX", "E-Commerce", "Trade Portal"],
+    thumbnail: "/images/portfolio/atelier-kora.jpg",
     thumbnailAlt:
-      "Atelier Kora responsive website interface showcasing architectural ceramics and streamlined inquiry checkout flow",
+      "Photorealistic desktop monitor and iPad Pro on an oak desk displaying a luxury architectural homeware e-commerce collection",
     gallery: [
       {
-        src: "/images/portfolio/atelier-kora-ecommerce.svg",
-        alt: "Atelier Kora desktop flagship interface and performance metrics",
-        caption:
-          "Split-screen editorial layout balancing tactile imagery with rapid specification lookup.",
+        src: "/images/portfolio/atelier-kora.jpg",
+        alt: "Atelier Kora responsive desktop and iPad showroom interface",
+        caption: "Tactile editorial layout with seamless desktop-to-tablet responsiveness.",
+      },
+      {
+        src: "/images/services/web-engineering.jpg",
+        alt: "Responsive engineering across desktop and mobile viewports",
+        caption: "Sub-second page transitions and streamlined 3-step trade quote checkout.",
       },
     ],
     summary:
-      "A fast, tactile digital flagship and trade specification platform designed for interior architects and discerning retail buyers.",
+      "Fast, tactile digital flagship and trade specification platform for interior architects and retail buyers.",
     brief:
-      "Design and develop a responsive digital catalogue that showcases handcrafted architectural objects while simplifying trade quote requests for interior designers.",
+      "Design a fast digital showroom that highlights handcrafted objects and simplifies bulk trade quotes.",
     challenge:
-      "Heavy unoptimized imagery and a cluttered navigation structure caused slow mobile page loads and made it difficult for trade buyers to request custom dimensions or bulk quotes.",
+      "Unoptimized images and complex menus caused slow mobile loads and high drop-off from trade buyers.",
     solution:
-      "We architected a lightweight, server-rendered web platform featuring progressive image loading, clear collection filtering, downloadable specification sheets, and a streamlined trade enquiry workflow.",
+      "We built a lightweight Next.js flagship with instant collection filters, downloadable spec sheets, and a guided 3-step trade enquiry flow.",
     deliverables: [
-      "Mobile-first UX wireframes and bespoke editorial UI design",
-      "Responsive Next.js frontend with optimized asset delivery",
-      "Interactive collection filtering by material, finish, and dimension",
-      "Dedicated Trade & Hospitality quote request workflow",
-      "Structured Product and Organization JSON-LD schema implementation",
+      "Mobile-first editorial UI/UX design",
+      "Next.js storefront & collection filters",
+      "Guided Trade & Hospitality quote flow",
+      "Technical SEO & structured product schema",
     ],
     outcomes: [
       {
-        label: "Performance Architecture",
-        detail:
-          "Engineered for sub-second first contentful paint with zero cumulative layout shift across mobile and desktop.",
+        label: "99/100 Performance",
+        detail: "Sub-second load times with zero layout shift on mobile and desktop.",
         verified: true,
       },
       {
-        label: "Trade Enquiry Clarity",
-        detail:
-          "Replaced unstructured email inquiries with a guided specification form capturing project timelines and quantities up front.",
+        label: "3-Step Trade Quotes",
+        detail: "Replaced unstructured emails with guided specification requests.",
         verified: true,
       },
     ],
@@ -127,49 +121,45 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-nexus-freight",
     slug: "nexus-freight-b2b-platform",
-    title: "Nexus Freight — B2B Corporate Web Platform & Lead Engine",
-    clientOrIndustry: "Maritime Logistics & Supply Chain Advisory",
+    title: "Nexus Freight — Global Logistics Portal",
+    clientOrIndustry: "Maritime Supply Chain & B2B Freight",
     disclosureNote:
-      "Representative B2B platform case study demonstrating complex service structuring and multi-step quote capture.",
+      "Representative B2B platform case study demonstrating complex service structuring.",
     category: "Web Design & Development",
-    tags: ["B2B Website", "Information Architecture", "Lead Qualification", "Technical SEO"],
-    thumbnail: "/images/portfolio/nexus-logistics-platform.svg",
+    tags: ["B2B Platform", "Lead Engine", "UX Architecture", "SEO"],
+    thumbnail: "/images/portfolio/nexus-freight.jpg",
     thumbnailAlt:
-      "Nexus Freight enterprise portal showing global corridor visibility and structured B2B freight enquiry form",
+      "Photorealistic ultrawide curved monitor in a harbor-view office displaying a dark-mode global maritime logistics platform",
     gallery: [
       {
-        src: "/images/portfolio/nexus-logistics-platform.svg",
-        alt: "Nexus Freight B2B portal and structured tariff request interface",
-        caption:
-          "Consolidated service verticals paired with a guided B2B freight qualification form.",
+        src: "/images/portfolio/nexus-freight.jpg",
+        alt: "Nexus Freight global corridor tracking and B2B portal",
+        caption: "Real-time corridor visibility paired with structured freight quote capture.",
       },
     ],
     summary:
-      "Restructuring a sprawling legacy logistics website into a clear, authoritative B2B platform with structured freight enquiry routing.",
+      "Modern B2B logistics web platform consolidating 40+ legacy pages into 6 high-converting service verticals.",
     brief:
-      "Modernise the digital presence of a regional freight forwarder to attract enterprise supply chain directors and streamline quote qualification.",
+      "Modernise a regional freight forwarder's digital presence to capture enterprise shipping contracts.",
     challenge:
-      "Over 40 overlapping pages created navigation fatigue, while a generic contact form failed to capture cargo type, corridor, or customs requirements—slowing down commercial response times.",
+      "Over 40 cluttered pages confused buyers, while a generic contact form missed critical cargo details.",
     solution:
-      "We consolidated the site architecture into six core logistics verticals, established a clear technical credibility narrative, and built a validated quote intake system that routes enquiries by service line.",
+      "We restructured the site into 6 clear shipping verticals and built a validated quote intake engine that routes leads by corridor and container type.",
     deliverables: [
-      "Full information architecture audit and URL consolidation map",
-      " Six dedicated service detail templates with corridor breakdowns",
-      "Validated B2B quote intake system with server-side validation",
-      "Search-engine-friendly metadata and automated XML sitemap",
-      "Centralised configuration allowing rapid updates to port advisories",
+      "Information architecture & URL consolidation",
+      "6 dedicated logistics vertical pages",
+      "Validated B2B tariff & quote intake form",
+      "Automated XML sitemap & search metadata",
     ],
     outcomes: [
       {
-        label: "Information Clarity",
-        detail:
-          "Consolidated 40+ fragmented pages into 6 structured service verticals with direct conversion pathways.",
+        label: "6 Clear Verticals",
+        detail: "Consolidated 40+ legacy pages into an intuitive B2B buyer journey.",
         verified: true,
       },
       {
-        label: "Lead Qualification",
-        detail:
-          "Standardised inbound enquiries with required service category and scope fields before sales handoff.",
+        label: "Qualified Freight Leads",
+        detail: "Captures cargo specs, origin/destination, and volume on first contact.",
         verified: true,
       },
     ],
@@ -179,49 +169,45 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-solaris-cleantech",
     slug: "solaris-cleantech-growth-architecture",
-    title: "Solaris CleanTech — Multi-Channel Campaign & Landing System",
-    clientOrIndustry: "Commercial Renewable Energy & Microgrids",
+    title: "Solaris CleanTech — ROI Campaign System",
+    clientOrIndustry: "Commercial Solar & Microgrids",
     disclosureNote:
-      "Representative digital growth and campaign architecture showcase.",
+      "Representative digital growth and campaign landing page showcase.",
     category: "Content & Campaigns",
-    tags: ["Landing Pages", "Campaign Creative", "Conversion Tracking", "B2B Growth"],
-    thumbnail: "/images/portfolio/solaris-energy-campaign.svg",
+    tags: ["Landing Pages", "Interactive ROI", "Ad Creative", "CRO"],
+    thumbnail: "/images/portfolio/solaris-cleantech.jpg",
     thumbnailAlt:
-      "Solaris CleanTech campaign creatives, paid search landing page, and full-funnel conversion architecture",
+      "Photorealistic laptop and smartphone on a concrete desk showing an interactive solar ROI calculator and campaign lander",
     gallery: [
       {
-        src: "/images/portfolio/solaris-energy-campaign.svg",
-        alt: "Solaris CleanTech campaign creative suite and landing page funnel",
-        caption:
-          "Message-matched ad creative, dedicated landing page, and CRM attribution pipeline.",
+        src: "/images/portfolio/solaris-cleantech.jpg",
+        alt: "Solaris CleanTech interactive ROI calculator and mobile campaign",
+        caption: "Dedicated campaign landing page with interactive commercial savings estimator.",
       },
     ],
     summary:
-      "An integrated B2B campaign system combining authoritative technical briefs, message-matched landing pages, and privacy-conscious conversion tracking.",
+      "Message-matched B2B campaign kit and interactive ROI calculator built to generate industrial site assessments.",
     brief:
-      "Create a repeatable digital acquisition framework to generate qualified commercial site assessment requests from industrial facility managers.",
+      "Build a repeatable acquisition funnel targeting commercial facility managers.",
     challenge:
-      "Previous ad campaigns directed traffic to a general corporate homepage, resulting in high bounce rates and few qualified technical consultations.",
+      "Sending paid search traffic to a generic homepage resulted in high bounce rates and few consultations.",
     solution:
-      "We designed a cohesive campaign kit featuring industry-specific ad visuals, a focused commercial microgrid landing page, and event tracking tied strictly to completed site-assessment briefs.",
+      "We launched a dedicated campaign landing page featuring an interactive kWh savings preview, industry-specific ad creative, and clean CRM lead routing.",
     deliverables: [
-      "Campaign messaging framework for industrial and commercial buyers",
-      "Dedicated high-contrast conversion landing page template",
-      "Social and display creative system across 4 aspect ratios",
-      "Executive whitepaper layout for lead nurture",
-      "Consent-aware analytics event taxonomy",
+      "Dedicated conversion landing page",
+      "Interactive ROI preview component",
+      "LinkedIn & Search ad creative suite",
+      "Consent-gated conversion tracking",
     ],
     outcomes: [
       {
-        label: "Message Alignment",
-        detail:
-          "100% alignment between ad creative headlines, landing page hero propositions, and enquiry form CTAs.",
+        label: "100% Message Match",
+        detail: "Aligned ad headlines directly with landing page value propositions.",
         verified: true,
       },
       {
-        label: "Attribution Hygiene",
-        detail:
-          "Implemented clean, privacy-compliant tracking for form submissions and consultation requests.",
+        label: "Clean Attribution",
+        detail: "Tracked verified site-assessment requests without exposing PII.",
         verified: true,
       },
     ],
@@ -231,48 +217,45 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-lumina-diagnostics",
     slug: "lumina-diagnostics-patient-portal",
-    title: "Lumina Diagnostics — Accessible Patient Hub & Content System",
-    clientOrIndustry: "Healthcare & Preventive Diagnostics",
+    title: "Lumina Diagnostics — Patient Booking Hub",
+    clientOrIndustry: "Healthcare & Preventive Screening",
     disclosureNote:
-      "Representative healthcare web experience and editorial architecture showcase.",
+      "Representative accessible healthcare web experience showcase.",
     category: "Web Design & Development",
-    tags: ["Accessibility (WCAG)", "Content Hub", "Healthcare UX", "Mobile-First"],
-    thumbnail: "/images/portfolio/lumina-health-portal.svg",
+    tags: ["Healthcare UX", "WCAG Accessible", "Mobile-First", "Booking Flow"],
+    thumbnail: "/images/portfolio/lumina-health.jpg",
     thumbnailAlt:
-      "Lumina Diagnostics accessible web interface featuring preventive screening pathways and corporate wellness programmes",
+      "Photorealistic desktop monitor and tablet on a clinic reception desk displaying an accessible patient health portal",
     gallery: [
       {
-        src: "/images/portfolio/lumina-health-portal.svg",
-        alt: "Lumina Diagnostics patient pathway cards and accessible interface",
-        caption:
-          "High-contrast, plain-language service cards built for effortless mobile navigation.",
+        src: "/images/portfolio/lumina-health.jpg",
+        alt: "Lumina Diagnostics desktop and tablet booking interface",
+        caption: "Calm, high-contrast patient interface designed for effortless mobile booking.",
       },
     ],
     summary:
-      "A patient-centric website and educational health library designed for maximum readability, accessibility, and frictionless appointment enquiries.",
+      "Accessible, patient-friendly diagnostic web portal and corporate wellness booking platform.",
     brief:
-      "Redesign a diagnostic clinic network's digital presence so patients and corporate HR buyers can easily understand screening packages and book consultations.",
+      "Redesign a clinic network's website so patients can easily understand screening packages and book online.",
     challenge:
-      "Medical jargon and small, low-contrast typography made the previous site intimidating for patients on mobile devices, leading to frequent phone calls for basic preparation questions.",
+      "Medical jargon and tiny text on mobile devices frustrated patients and overwhelmed phone reception.",
     solution:
-      "We created a calm, high-contrast interface with plain-language preparation checklists, searchable FAQ modules, and separate enquiry flows for individual patients and corporate wellness partners.",
+      "We created a calm, WCAG AA accessible interface with plain-language checklists, instant FAQ search, and separate booking flows for patients and HR teams.",
     deliverables: [
-      "WCAG 2.1 AA accessible interface design and typographic hierarchy",
-      "Structured service directory with preparation checklists",
-      "Searchable educational insights and patient FAQ hub",
-      "Direct WhatsApp and web form routing for patient support",
+      "WCAG 2.1 AA accessible interface design",
+      "Preventive screening directory & checklists",
+      "Corporate wellness HR enquiry desk",
+      "Direct WhatsApp & web booking integration",
     ],
     outcomes: [
       {
-        label: "Mobile Usability",
-        detail:
-          "Touch targets, readable font scales, and zero horizontal overflow verified across 320px–1440px viewports.",
+        label: "Mobile-First Clarity",
+        detail: "Zero horizontal overflow and accessible touch targets across all devices.",
         verified: true,
       },
       {
-        label: "Self-Service Clarity",
-        detail:
-          "Surfaced preparation instructions and FAQ answers directly on service pages to reduce support friction.",
+        label: "Reduced Support Calls",
+        detail: "Surfaced preparation checklists directly on service pages.",
         verified: true,
       },
     ],
@@ -282,48 +265,45 @@ export const portfolioProjects: ProjectItem[] = [
   {
     id: "proj-monarch-advisory",
     slug: "monarch-advisory-strategic-rebrand",
-    title: "Monarch Advisory — Strategic Positioning & Executive Presence",
-    clientOrIndustry: "Corporate Advisory & Institutional Strategy",
+    title: "Monarch Advisory — Executive Rebrand",
+    clientOrIndustry: "Corporate Advisory & M&A Strategy",
     disclosureNote:
       "Representative strategic positioning and corporate identity case study.",
     category: "Digital Strategy & Growth",
-    tags: ["Brand Positioning", "Executive Web Presence", "Editorial Systems", "B2B Strategy"],
-    thumbnail: "/images/portfolio/monarch-advisory-rebrand.svg",
+    tags: ["Brand Positioning", "Executive Web", "Print & Digital", "Editorial"],
+    thumbnail: "/images/portfolio/monarch-advisory.jpg",
     thumbnailAlt:
-      "Monarch Advisory strategic rebrand showing executive presentation slides, monogram system, and quarterly market outlook templates",
+      "Photorealistic walnut boardroom table with embossed navy stationery, coral-edged business cards, and executive laptop website",
     gallery: [
       {
-        src: "/images/portfolio/monarch-advisory-rebrand.svg",
-        alt: "Monarch Advisory brand architecture and publication templates",
-        caption:
-          "Cohesive executive positioning across digital briefings and advisory mandates.",
+        src: "/images/portfolio/monarch-advisory.jpg",
+        alt: "Monarch Advisory stationery kit and institutional website",
+        caption: "Cohesive executive identity across print collateral and digital briefings.",
       },
     ],
     summary:
-      "Repositioning a cross-border advisory firm with a sharp value proposition, executive identity system, and modular insight publishing workflow.",
+      "Strategic repositioning, executive stationery kit, and digital insights hub for a cross-border advisory firm.",
     brief:
-      "Align the digital presence and publication materials of a boutique advisory partnership with the calibre of its institutional clientele.",
+      "Align the digital and print presence of an advisory partnership with its institutional clientele.",
     challenge:
-      "While the partners possessed deep transaction experience, their digital presence lacked a clear positioning statement or a structured way to publish quarterly market commentary.",
+      "The firm lacked a unified positioning narrative and needed a simple way to publish quarterly market briefings.",
     solution:
-      "We conducted stakeholder discovery to codify their core positioning narrative, designed a restrained architectural identity, and built an insights publishing system for quarterly sector briefings.",
+      "We codified their core value proposition, designed an embossed navy-and-coral identity system, and built a modular digital insights hub.",
     deliverables: [
-      "Core positioning narrative and practice-area messaging framework",
-      "Architectural monogram and executive stationery system",
-      "Digital insights hub for quarterly market briefings",
-      "Confidential consultation request workflow",
+      "Positioning narrative & messaging matrix",
+      "Monogram & executive stationery system",
+      "Digital insights & market briefing hub",
+      "Confidential consultation request flow",
     ],
     outcomes: [
       {
-        label: "Narrative Alignment",
-        detail:
-          "Established a single, consistent value proposition across partner bios, practice pages, and pitch decks.",
+        label: "Unified Positioning",
+        detail: "Consistent narrative across partner profiles, pitch decks, and web.",
         verified: true,
       },
       {
         label: "In-House Publishing",
-        detail:
-          "Enabled the advisory team to publish structured sector insights without developer intervention.",
+        detail: "Empowered partners to publish quarterly sector reports effortlessly.",
         verified: true,
       },
     ],
