@@ -11,10 +11,20 @@ import {
   Linkedin,
   Twitter,
   Github,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { getPublishedAboutSections, getPublishedTeamMembers } from "@/lib/cms-store";
 import { CtaBanner } from "@/components/CtaBanner";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.32a6.34 6.34 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.6a6.34 6.34 0 0 0 10.74 4.54V11.8a8.31 8.31 0 0 0 5.71 1.93v-3.52a4.88 4.88 0 0 1-3.14-1.28A4.83 4.83 0 0 1 19.59 6.7z" />
+    </svg>
+  );
+}
 
 export const revalidate = 60; // Revalidate every 60s
 
@@ -359,6 +369,39 @@ export default async function AboutPage() {
 
                     {member.socials && Object.keys(member.socials).length > 0 && (
                       <div className="mt-4 pt-4 border-t border-slate-200 flex items-center gap-3">
+                        {member.socials.facebook && (
+                          <a
+                            href={member.socials.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${member.name} on Facebook`}
+                            className="text-slate-400 hover:text-brand-coral-strong transition-colors"
+                          >
+                            <Facebook className="h-4 w-4" />
+                          </a>
+                        )}
+                        {member.socials.instagram && (
+                          <a
+                            href={member.socials.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${member.name} on Instagram`}
+                            className="text-slate-400 hover:text-brand-coral-strong transition-colors"
+                          >
+                            <Instagram className="h-4 w-4" />
+                          </a>
+                        )}
+                        {member.socials.tiktok && (
+                          <a
+                            href={member.socials.tiktok}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${member.name} on TikTok`}
+                            className="text-slate-400 hover:text-brand-coral-strong transition-colors"
+                          >
+                            <TikTokIcon className="h-4 w-4" />
+                          </a>
+                        )}
                         {member.socials.linkedin && (
                           <a
                             href={member.socials.linkedin}

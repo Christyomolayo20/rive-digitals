@@ -13,8 +13,18 @@ import {
   Linkedin,
   Twitter,
   Github,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 import { TeamMemberItem } from "@/types";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.32a6.34 6.34 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.6a6.34 6.34 0 0 0 10.74 4.54V11.8a8.31 8.31 0 0 0 5.71 1.93v-3.52a4.88 4.88 0 0 1-3.14-1.28A4.83 4.83 0 0 1 19.59 6.7z" />
+    </svg>
+  );
+}
 
 export default function AdminTeamPage() {
   const [team, setTeam] = useState<TeamMemberItem[]>([]);
@@ -29,6 +39,9 @@ export default function AdminTeamPage() {
   const [role, setRole] = useState("");
   const [bio, setBio] = useState("");
   const [image, setImage] = useState("/images/about-studio.jpg");
+  const [facebook, setFacebook] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tiktok, setTiktok] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [xSocial, setXSocial] = useState("");
   const [github, setGithub] = useState("");
@@ -62,6 +75,9 @@ export default function AdminTeamPage() {
     setRole("");
     setBio("");
     setImage("/images/about-studio.jpg");
+    setFacebook("");
+    setInstagram("");
+    setTiktok("");
     setLinkedin("");
     setXSocial("");
     setGithub("");
@@ -76,6 +92,9 @@ export default function AdminTeamPage() {
     setRole(member.role);
     setBio(member.bio);
     setImage(member.image);
+    setFacebook(member.socials?.facebook || "");
+    setInstagram(member.socials?.instagram || "");
+    setTiktok(member.socials?.tiktok || "");
     setLinkedin(member.socials?.linkedin || "");
     setXSocial(member.socials?.x || "");
     setGithub(member.socials?.github || "");
@@ -96,6 +115,9 @@ export default function AdminTeamPage() {
       bio,
       image,
       socials: {
+        ...(facebook ? { facebook } : {}),
+        ...(instagram ? { instagram } : {}),
+        ...(tiktok ? { tiktok } : {}),
         ...(linkedin ? { linkedin } : {}),
         ...(xSocial ? { x: xSocial } : {}),
         ...(github ? { github } : {}),
@@ -263,6 +285,9 @@ export default function AdminTeamPage() {
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
                   <span>Order: #{member.displayOrder}</span>
                   <div className="flex items-center gap-2">
+                    {member.socials?.facebook && <Facebook className="h-3.5 w-3.5" />}
+                    {member.socials?.instagram && <Instagram className="h-3.5 w-3.5" />}
+                    {member.socials?.tiktok && <TikTokIcon className="h-3.5 w-3.5" />}
                     {member.socials?.linkedin && <Linkedin className="h-3.5 w-3.5" />}
                     {member.socials?.x && <Twitter className="h-3.5 w-3.5" />}
                     {member.socials?.github && <Github className="h-3.5 w-3.5" />}
@@ -376,6 +401,45 @@ export default function AdminTeamPage() {
                 <p className="mt-1 text-[11px] text-slate-400">
                   Defaults to photorealistic studio asset <code className="text-slate-600">/images/about-studio.jpg</code> or Supabase Storage public URL.
                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Facebook URL
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="https://facebook.com/..."
+                    value={facebook}
+                    onChange={(e) => setFacebook(e.target.value)}
+                    className="mt-1.5 block w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-900"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Instagram URL
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="https://instagram.com/..."
+                    value={instagram}
+                    onChange={(e) => setInstagram(e.target.value)}
+                    className="mt-1.5 block w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-900"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    TikTok URL
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="https://tiktok.com/@..."
+                    value={tiktok}
+                    onChange={(e) => setTiktok(e.target.value)}
+                    className="mt-1.5 block w-full rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-900"
+                  />
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

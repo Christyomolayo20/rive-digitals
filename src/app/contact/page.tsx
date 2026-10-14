@@ -8,10 +8,33 @@ import {
   MapPin,
   ArrowUpRight,
   CheckCircle2,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { buildWhatsAppUrl } from "@/lib/utils";
 import { EnquiryForm } from "@/components/EnquiryForm";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.32a6.34 6.34 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.6a6.34 6.34 0 0 0 10.74 4.54V11.8a8.31 8.31 0 0 0 5.71 1.93v-3.52a4.88 4.88 0 0 1-3.14-1.28A4.83 4.83 0 0 1 19.59 6.7z" />
+    </svg>
+  );
+}
+
+function getSocialIcon(platform: string) {
+  switch (platform.toLowerCase()) {
+    case "facebook":
+      return <Facebook className="h-3.5 w-3.5 text-brand-coral shrink-0" />;
+    case "instagram":
+      return <Instagram className="h-3.5 w-3.5 text-brand-coral shrink-0" />;
+    case "tiktok":
+      return <TikTokIcon className="h-3.5 w-3.5 text-brand-coral shrink-0" />;
+    default:
+      return null;
+  }
+}
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote — Start Your Project",
@@ -157,10 +180,10 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
               </div>
 
-              {/* Social Profiles */}
+              {/* Social Channels */}
               <div className="pt-5 border-t border-slate-100">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">
-                  Official Social Profiles
+                  Official Social Channels
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {siteConfig.socials.map((social) => (
@@ -169,8 +192,9 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-brand-navy hover:border-brand-navy transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-brand-navy hover:border-brand-coral hover:text-brand-coral transition-colors"
                     >
+                      {getSocialIcon(social.platform)}
                       <span>{social.platform}</span>
                       <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
                     </a>

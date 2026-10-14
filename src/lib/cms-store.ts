@@ -145,8 +145,9 @@ const DEFAULT_TEAM_MEMBERS: TeamMemberItem[] = [
     bio: "Spearheads brand positioning, visual identity direction, and multi-channel creative systems for ambitious digital brands.",
     image: "/images/about-studio.jpg",
     socials: {
-      linkedin: "https://linkedin.com",
-      x: "https://x.com",
+      facebook: "https://www.facebook.com/rivedigitals",
+      instagram: "https://www.instagram.com/rivedigitals",
+      tiktok: "https://www.tiktok.com/@rivedigitals",
     },
     displayOrder: 1,
     isPublished: true,
@@ -158,8 +159,9 @@ const DEFAULT_TEAM_MEMBERS: TeamMemberItem[] = [
     bio: "Oversees Next.js web application architecture, database schemas, performance optimization, and API integrations.",
     image: "/images/about-studio.jpg",
     socials: {
-      linkedin: "https://linkedin.com",
-      github: "https://github.com",
+      facebook: "https://www.facebook.com/rivedigitals",
+      instagram: "https://www.instagram.com/rivedigitals",
+      tiktok: "https://www.tiktok.com/@rivedigitals",
     },
     displayOrder: 2,
     isPublished: true,

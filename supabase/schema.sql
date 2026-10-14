@@ -37,9 +37,9 @@ create table if not exists public.site_settings (
   location_summary text default 'Remote-First Digital Studio • Serving Clients Globally',
   working_hours text default 'Monday – Friday, 9:00 AM – 6:00 PM (WAT / GMT+1)',
   social_links jsonb not null default '[
-    {"platform": "LinkedIn", "url": "https://www.linkedin.com/company/rivedigitals", "handle": "@rivedigitals"},
+    {"platform": "Facebook", "url": "https://www.facebook.com/rivedigitals", "handle": "@rivedigitals"},
     {"platform": "Instagram", "url": "https://www.instagram.com/rivedigitals", "handle": "@rivedigitals"},
-    {"platform": "X", "url": "https://x.com/rivedigitals", "handle": "@rivedigitals"}
+    {"platform": "TikTok", "url": "https://www.tiktok.com/@rivedigitals", "handle": "@rivedigitals"}
   ]'::jsonb,
   updated_at timestamptz not null default now()
 );
@@ -383,7 +383,7 @@ values
   'Creative Director & Brand Strategist',
   'Spearheads brand positioning, visual identity direction, and multi-channel creative systems for ambitious digital brands.',
   '/images/about-studio.jpg',
-  '{"linkedin": "https://linkedin.com", "x": "https://x.com"}'::jsonb,
+  '{"facebook": "https://www.facebook.com/rivedigitals", "instagram": "https://www.instagram.com/rivedigitals", "tiktok": "https://www.tiktok.com/@rivedigitals"}'::jsonb,
   1,
   true
 ),
@@ -393,7 +393,7 @@ values
   'Full-Stack Web Architect',
   'Oversees Next.js web application architecture, database schemas, performance optimization, and API integrations.',
   '/images/about-studio.jpg',
-  '{"linkedin": "https://linkedin.com", "github": "https://github.com"}'::jsonb,
+  '{"facebook": "https://www.facebook.com/rivedigitals", "instagram": "https://www.instagram.com/rivedigitals", "tiktok": "https://www.tiktok.com/@rivedigitals"}'::jsonb,
   2,
   true
 )

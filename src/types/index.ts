@@ -89,6 +89,9 @@ export interface TeamMemberItem {
   bio: string;
   image: string;
   socials?: {
+    facebook?: string;
+    instagram?: string;
+    tiktok?: string;
     linkedin?: string;
     x?: string;
     github?: string;

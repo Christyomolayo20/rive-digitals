@@ -2,11 +2,32 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowUpRight, Facebook, Instagram } from "lucide-react";
 import { siteConfig, mainNavLinks } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { BrandLogo } from "@/components/BrandLogo";
 import { trackEvent, setAnalyticsConsent } from "@/lib/analytics";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.32a6.34 6.34 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.6a6.34 6.34 0 0 0 10.74 4.54V11.8a8.31 8.31 0 0 0 5.71 1.93v-3.52a4.88 4.88 0 0 1-3.14-1.28A4.83 4.83 0 0 1 19.59 6.7z" />
+    </svg>
+  );
+}
+
+function getSocialIcon(platform: string) {
+  switch (platform.toLowerCase()) {
+    case "facebook":
+      return <Facebook className="h-4 w-4 text-brand-coral shrink-0" />;
+    case "instagram":
+      return <Instagram className="h-4 w-4 text-brand-coral shrink-0" />;
+    case "tiktok":
+      return <TikTokIcon className="h-4 w-4 text-brand-coral shrink-0" />;
+    default:
+      return null;
+  }
+}
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -106,13 +127,14 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="inline-flex items-center gap-1.5 text-slate-400 transition-colors hover:text-white"
+                      className="group inline-flex items-center gap-2 text-slate-300 transition-colors hover:text-white"
                     >
+                      {getSocialIcon(social.platform)}
                       <span>{social.platform}</span>
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-slate-500 group-hover:text-slate-400">
                         ({social.handle})
                       </span>
-                      <ArrowUpRight className="h-3.5 w-3.5 text-slate-500" />
+                      <ArrowUpRight className="h-3.5 w-3.5 text-slate-500 group-hover:text-brand-coral transition-colors" />
                     </a>
                   </li>
                 ))}

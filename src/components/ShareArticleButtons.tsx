@@ -32,23 +32,13 @@ export function ShareArticleButtons({ title, url }: ShareArticleButtonsProps) {
       </span>
 
       <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+        href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Share article on LinkedIn"
+        aria-label="Share article on Facebook"
         className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-brand-navy hover:border-brand-navy transition-colors"
       >
-        LinkedIn
-      </a>
-
-      <a
-        href={`https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Share article on X (Twitter)"
-        className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-brand-navy hover:border-brand-navy transition-colors"
-      >
-        X / Twitter
+        Facebook
       </a>
 
       <button

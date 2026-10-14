@@ -27,9 +27,9 @@ export const siteConfig: SiteConfig = {
   },
   socials: [
     {
-      platform: "LinkedIn",
-      label: "Connect with Rive Digitals on LinkedIn",
-      url: "https://www.linkedin.com/company/rivedigitals",
+      platform: "Facebook",
+      label: "Follow Rive Digitals on Facebook",
+      url: "https://www.facebook.com/rivedigitals",
       handle: "@rivedigitals",
     },
     {
@@ -39,9 +39,9 @@ export const siteConfig: SiteConfig = {
       handle: "@rivedigitals",
     },
     {
-      platform: "X",
-      label: "Follow Rive Digitals on X (Twitter)",
-      url: "https://x.com/rivedigitals",
+      platform: "TikTok",
+      label: "Follow Rive Digitals on TikTok",
+      url: "https://www.tiktok.com/@rivedigitals",
       handle: "@rivedigitals",
     },
   ],
