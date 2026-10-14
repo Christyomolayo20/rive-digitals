@@ -27,7 +27,7 @@ function isAuthorized(request: NextRequest): boolean {
     request.headers.get("x-admin-passcode") ||
     request.cookies.get("admin_session")?.value;
 
-  const validPasscode = process.env.ADMIN_PASSCODE || "rive-admin-2026";
+  const validPasscode = process.env.ADMIN_PASSCODE || "R1ved!git@l$";
 
   if (passcode === validPasscode || passcode === "session_active") {
     return true;

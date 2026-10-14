@@ -30,10 +30,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "var(--font-sans)",
-          '"SF Pro Display"',
+          '"San Francisco"',
           "-apple-system",
           "BlinkMacSystemFont",
+          '"SF Pro Text"',
+          '"SF Pro Display"',
           '"Segoe UI"',
           "Roboto",
           "Helvetica",
@@ -41,10 +42,11 @@ const config: Config = {
           "sans-serif",
         ],
         display: [
-          "var(--font-display)",
-          '"SF Pro Display"',
+          '"San Francisco"',
           "-apple-system",
           "BlinkMacSystemFont",
+          '"SF Pro Display"',
+          '"SF Pro Text"',
           '"Segoe UI"',
           "Roboto",
           "Helvetica",
