@@ -37,7 +37,7 @@ export default function AdminLoginPage() {
         document.cookie = `admin_session=${encodeURIComponent(
           trimmed
         )}; path=/; max-age=86400; SameSite=Lax`;
-        router.push("/admin/dashboard");
+        window.location.href = "/admin/dashboard";
       } else {
         setError("Invalid studio passcode. Please check your credentials.");
       }

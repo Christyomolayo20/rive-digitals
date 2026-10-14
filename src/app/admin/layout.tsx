@@ -48,7 +48,7 @@ export default function AdminLayout({
       return;
     }
 
-    const token =
+    let token =
       localStorage.getItem("rive_admin_session") ||
       document.cookie
         .split("; ")
@@ -60,6 +60,11 @@ export default function AdminLayout({
       router.push("/admin/login");
       return;
     }
+
+    try {
+      token = decodeURIComponent(token);
+    } catch {}
+    token = token.trim();
 
     // Strictly verify password against server Admin API
     fetch("/api/admin?resource=metrics", {
