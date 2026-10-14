@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/services",
+    "/portfolio",
     "/work",
     "/blog",
     "/faq",
@@ -34,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projectRoutes: MetadataRoute.Sitemap = portfolioProjects.map(
     (project) => ({
-      url: `${baseUrl}/work/${project.slug}`,
+      url: `${baseUrl}/portfolio/${project.slug}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,

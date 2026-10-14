@@ -14,59 +14,118 @@ export interface ServiceItem {
   category: string;
   offeringStatus: ServiceOfferingStatus;
   statusNote?: string;
-  iconName:
-    | "Palette"
-    | "Code2"
-    | "Share2"
-    | "TrendingUp"
-    | "PenTool"
-    | "Compass";
+  iconName?: string;
   image: string;
-  imageAlt: string;
+  imageAlt?: string;
   summary: string;
   description: string;
-  problemSolved: string;
+  problemSolved?: string;
   deliverables: string[];
-  idealCustomer: string[];
-  workflow: ServiceWorkflowStep[];
-  ctaLabel: string;
+  idealCustomer?: string[];
+  workflow?: ServiceWorkflowStep[];
+  ctaLabel?: string;
   featured: boolean;
+  displayOrder?: number;
+  isPublished?: boolean;
 }
 
 export type ProjectCategory =
+  | "All"
   | "Brand Identity"
   | "Web Design & Development"
   | "Digital Strategy & Growth"
-  | "Content & Campaigns";
+  | "Content & Campaigns"
+  | "Enterprise Web & Systems"
+  | "Healthcare UX & Engineering"
+  | "Brand Identity & Collateral";
 
 export interface ProjectItem {
   id: string;
   slug: string;
   title: string;
   clientOrIndustry: string;
-  disclosureNote: string;
-  category: ProjectCategory;
-  tags: string[];
+  disclosureNote?: string;
+  category: ProjectCategory | string;
+  tags?: string[];
   thumbnail: string;
-  thumbnailAlt: string;
+  thumbnailAlt?: string;
   gallery: {
     src: string;
-    alt: string;
-    caption: string;
+    alt?: string;
+    caption?: string;
   }[];
   summary: string;
-  brief: string;
+  brief?: string;
   challenge: string;
   solution: string;
   deliverables: string[];
-  outcomes: {
+  outcomes?: {
     label: string;
     detail: string;
     verified: boolean;
   }[];
   externalUrl?: string;
   featured: boolean;
-  completedYear: string;
+  completedYear?: string;
+  displayOrder?: number;
+  isPublished?: boolean;
+}
+
+export interface AboutSectionItem {
+  id: string;
+  sectionKey: "intro" | "story" | "mission" | "vision" | "values" | "process" | string;
+  title: string;
+  subtitle?: string;
+  content: string;
+  items?: any[];
+  isPublished: boolean;
+  displayOrder: number;
+}
+
+export interface TeamMemberItem {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  socials?: {
+    linkedin?: string;
+    x?: string;
+    github?: string;
+  };
+  displayOrder: number;
+  isPublished: boolean;
+}
+
+export type ContactSubmissionStatus = "new" | "in_progress" | "responded" | "closed";
+
+export interface ContactSubmission {
+  id: string;
+  referenceId?: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  serviceInterest: string;
+  subject?: string;
+  message: string;
+  budget?: string;
+  preferredContact?: "email" | "phone" | "whatsapp";
+  status: ContactSubmissionStatus;
+  isRead: boolean;
+  notes?: string;
+  createdAt: string;
+}
+
+export type EnquiryRecord = ContactSubmission;
+export type EnquiryStatus = "new" | "in_review" | "responded" | "archived";
+
+export interface AdminProfile {
+  id: string;
+  email: string;
+  fullName: string;
+  role: "admin" | "editor";
+  isActive: boolean;
 }
 
 export type BlogCategory =
@@ -113,10 +172,10 @@ export interface FaqItem {
 export interface ProcessStage {
   number: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
-  clientInputs: string[];
-  keyOutputs: string[];
+  clientInputs?: string[];
+  keyOutputs?: string[];
 }
 
 export interface TestimonialItem {
@@ -134,25 +193,6 @@ export interface TeamMember {
   role: string;
   bio: string;
   image?: string;
-}
-
-export type EnquiryStatus = "new" | "in_review" | "responded" | "archived";
-
-export interface EnquiryRecord {
-  id?: string;
-  referenceId: string;
-  submittedAt: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  company: string;
-  service: string;
-  budget: string;
-  description: string;
-  preferredContact: "email" | "phone" | "whatsapp";
-  privacyConsent: boolean;
-  status: EnquiryStatus;
-  notes?: string;
 }
 
 export interface SiteConfig {

@@ -1,9 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { servicesData } from "@/data/services";
+import { getPublishedServices } from "@/lib/cms-store";
 import { deliveryProcess } from "@/data/process";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBanner } from "@/components/CtaBanner";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Digital Services — Branding, Web Development & Growth Strategy",
@@ -14,7 +16,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getPublishedServices();
+
   return (
     <div>
       {/* Page Hero */}
@@ -41,11 +45,11 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section
         aria-label="All Services"
-        className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8"
+        className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-brand-canvas"
       >
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {servicesData.map((service) => (
+            {services.map((service) => (
               <ServiceCard
                 key={service.id}
                 service={service}

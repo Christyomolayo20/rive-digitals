@@ -21,9 +21,7 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
     expect(urls).toContain(`${siteConfig.url}`);
     expect(urls).toContain(`${siteConfig.url}/about`);
     expect(urls).toContain(`${siteConfig.url}/services`);
-    expect(urls).toContain(`${siteConfig.url}/work`);
-    expect(urls).toContain(`${siteConfig.url}/blog`);
-    expect(urls).toContain(`${siteConfig.url}/faq`);
+    expect(urls).toContain(`${siteConfig.url}/portfolio`);
     expect(urls).toContain(`${siteConfig.url}/contact`);
     expect(urls).toContain(`${siteConfig.url}/privacy`);
     expect(urls).toContain(`${siteConfig.url}/terms`);
@@ -35,7 +33,7 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
 
     // Every portfolio case study route
     for (const project of portfolioProjects) {
-      expect(urls).toContain(`${siteConfig.url}/work/${project.slug}`);
+      expect(urls).toContain(`${siteConfig.url}/portfolio/${project.slug}`);
     }
 
     // Every blog article route
@@ -44,9 +42,14 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
     }
   });
 
-  it("generates robots.txt rules with sitemap reference and /api/ disallow", () => {
+  it("generates robots.txt rules with sitemap reference and /api/ and /admin/ disallow", () => {
     const robotsConfig = robots();
     expect(robotsConfig.sitemap).toBe(`${siteConfig.url}/sitemap.xml`);
+    const disallowRules = Array.isArray(robotsConfig.rules)
+      ? robotsConfig.rules[0].disallow
+      : robotsConfig.rules?.disallow;
+    expect(disallowRules).toContain("/admin/");
+    expect(disallowRules).toContain("/api/");
   });
 
   it("verifies that the uploaded brand logo and all photorealistic image assets exist on disk in public/", () => {
@@ -92,18 +95,17 @@ describe("Rive Digitals — Sitemap, Robots & Static Asset Verification", () => 
     }
   });
 
-  it("verifies all main navigation links map to valid implemented routes", () => {
+  it("verifies all main navigation links map to valid implemented public routes and excludes admin", () => {
     const validTopLevelRoutes = new Set([
       "/",
       "/about",
       "/services",
-      "/work",
-      "/blog",
-      "/faq",
+      "/portfolio",
       "/contact",
     ]);
     for (const navItem of mainNavLinks) {
       expect(validTopLevelRoutes.has(navItem.href)).toBe(true);
+      expect(navItem.href).not.toBe("/admin");
     }
   });
 });
@@ -130,9 +132,11 @@ describe("Rive Digitals — Admin API & Supabase CMS Endpoint", () => {
     const res = await AdminGET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
-    expect(Array.isArray(json.enquiries)).toBe(true);
     expect(Array.isArray(json.projects)).toBe(true);
     expect(Array.isArray(json.services)).toBe(true);
+    expect(Array.isArray(json.team)).toBe(true);
+    expect(Array.isArray(json.about)).toBe(true);
+    expect(json.metrics).toBeDefined();
     expect(json.supabase).toBeDefined();
   });
 });

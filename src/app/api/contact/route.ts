@@ -100,27 +100,49 @@ export async function POST(request: NextRequest) {
 
     const deliveredChannels: string[] = [];
 
-    // 1. Supabase Postgres Persistence (via env vars or Admin Studio runtime config)
+    // 1. Supabase Postgres Persistence (contact_submissions and enquiries tables)
     const sbCreds = await getSupabaseCredentials();
     if (sbCreds.source !== "unconfigured") {
-      const sbResult = await supabaseFetch("enquiries", {
+      let sbResult = await supabaseFetch("contact_submissions", {
         method: "POST",
         prefer: "return=minimal",
         body: {
-          reference_id: referenceId,
           full_name: enquiry.fullName,
           email: enquiry.email,
           phone: enquiry.phone || null,
           company: enquiry.company,
-          service: enquiry.service,
+          service_interest: enquiry.service,
+          subject: `New Enquiry from ${enquiry.company || enquiry.fullName}`,
+          message: enquiry.description,
           budget: enquiry.budget || null,
-          description: enquiry.description,
           preferred_contact: enquiry.preferredContact,
-          privacy_consent: enquiry.privacyConsent,
           status: "new",
+          is_read: false,
           created_at: submittedAt,
         },
       });
+
+      if (!sbResult.ok) {
+        // Fallback to enquiries table
+        sbResult = await supabaseFetch("enquiries", {
+          method: "POST",
+          prefer: "return=minimal",
+          body: {
+            reference_id: referenceId,
+            full_name: enquiry.fullName,
+            email: enquiry.email,
+            phone: enquiry.phone || null,
+            company: enquiry.company,
+            service: enquiry.service,
+            budget: enquiry.budget || null,
+            description: enquiry.description,
+            preferred_contact: enquiry.preferredContact,
+            privacy_consent: enquiry.privacyConsent,
+            status: "new",
+            created_at: submittedAt,
+          },
+        });
+      }
 
       if (sbResult.ok) {
         deliveredChannels.push("supabase");

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, MapPin, Clock, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { siteConfig, mainNavLinks } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -73,7 +73,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Company Navigation */}
+          {/* Column 3: Navigation */}
           <div className="lg:col-span-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
               Navigation
@@ -89,19 +89,10 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/admin"
-                  className="inline-flex items-center gap-1.5 text-slate-400 hover:text-brand-coral transition-colors"
-                >
-                  <ShieldCheck className="h-3.5 w-3.5 text-brand-coral" />
-                  <span>Admin Portal</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Column 4: Connect */}
+          {/* Column 4: Connect & Consultation */}
           <div className="sm:col-span-2 lg:col-span-3 space-y-6">
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
@@ -136,10 +127,10 @@ export function Footer() {
                 Receive a tailored proposal within 1–2 business days.
               </p>
               <Link
-                href="/contact?intent=quote"
+                href="/contact"
                 className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-coral hover:underline"
               >
-                Request a Quote →
+                Let&apos;s Work Together →
               </Link>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { siteConfig, mainNavLinks } from "@/config/site";
 import { servicesData } from "@/data/services";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -15,12 +15,21 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -51,14 +60,21 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brand-navy/95 backdrop-blur-md border-b border-brand-navy-border text-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full text-white transition-all duration-300",
+        scrolled
+          ? "bg-brand-navy/95 backdrop-blur-md border-b border-brand-navy-border shadow-lg shadow-black/10 py-3"
+          : "bg-brand-navy/90 backdrop-blur-sm border-b border-brand-navy-border/80 py-3.5"
+      )}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <BrandLogo variant="dark" size="md" />
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (No admin controls) */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden lg:flex lg:items-center lg:gap-1"
+          className="hidden lg:flex lg:items-center lg:gap-1.5"
         >
           {mainNavLinks.map((item) => {
             const active = isActive(item.href);
@@ -79,7 +95,7 @@ export function Header() {
                       className={cn(
                         "px-3.5 py-2 text-sm font-medium rounded-l-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                         active
-                          ? "text-brand-coral bg-brand-navy-elevated"
+                          ? "text-brand-coral bg-brand-navy-elevated font-semibold"
                           : "text-slate-200 hover:text-white hover:bg-brand-navy-elevated/60"
                       )}
                     >
@@ -90,9 +106,7 @@ export function Header() {
                       aria-label="Toggle services submenu"
                       aria-expanded={servicesDropdownOpen}
                       aria-controls="desktop-services-menu"
-                      onClick={() =>
-                        setServicesDropdownOpen((prev) => !prev)
-                      }
+                      onClick={() => setServicesDropdownOpen((prev) => !prev)}
                       className={cn(
                         "px-2 py-2 text-sm font-medium rounded-r-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                         active
@@ -114,7 +128,7 @@ export function Header() {
                       id="desktop-services-menu"
                       role="region"
                       aria-label="Services submenu"
-                      className="absolute left-0 top-full pt-2 w-[540px] z-50"
+                      className="absolute left-0 top-full pt-2 w-[540px] z-50 animate-in fade-in-50 zoom-in-95 duration-150"
                     >
                       <div className="rounded-2xl bg-brand-navy-elevated border border-brand-navy-border p-4 shadow-2xl">
                         <div className="mb-3 flex items-center justify-between border-b border-brand-navy-border pb-2.5 px-2">
@@ -168,7 +182,7 @@ export function Header() {
                 className={cn(
                   "px-3.5 py-2 text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                   active
-                    ? "text-brand-coral bg-brand-navy-elevated"
+                    ? "text-brand-coral bg-brand-navy-elevated font-semibold"
                     : "text-slate-200 hover:text-white hover:bg-brand-navy-elevated/60"
                 )}
               >
@@ -178,36 +192,27 @@ export function Header() {
           })}
         </nav>
 
-        {/* Desktop Primary CTA & Admin Link */}
-        <div className="hidden lg:flex lg:items-center lg:gap-3">
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-brand-navy-border bg-brand-navy-elevated px-3.5 py-2 text-xs font-semibold text-slate-300 hover:text-white hover:border-brand-coral/50 transition-colors"
-            title="Admin Studio & Supabase CMS"
-          >
-            <ShieldCheck className="h-3.5 w-3.5 text-brand-coral" />
-            <span>Admin</span>
-          </Link>
-
+        {/* Primary CTA (Strictly public) */}
+        <div className="hidden lg:flex lg:items-center">
           <Link
             href={siteConfig.cta.primaryHref}
             onClick={() =>
               trackEvent("primary_cta_clicked", { location: "header" })
             }
-            className="inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-coral focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
+            className="inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-coral hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral"
           >
-            {siteConfig.cta.primaryLabel}
+            <span>{siteConfig.cta.primaryLabel}</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        {/* Mobile Menu Trigger */}
+        {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href={siteConfig.cta.primaryHref}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-brand-coral-strong px-3.5 py-2 text-xs font-semibold text-white"
           >
-            Get Quote
+            Let&apos;s Talk
           </Link>
           <button
             type="button"
@@ -228,7 +233,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer (Strictly public) */}
       {mobileMenuOpen && (
         <nav
           id="mobile-navigation-drawer"
@@ -246,7 +251,7 @@ export function Header() {
                   className={cn(
                     "block rounded-xl px-4 py-3 text-base font-medium transition-colors",
                     active
-                      ? "bg-brand-navy-elevated text-brand-coral"
+                      ? "bg-brand-navy-elevated text-brand-coral font-semibold"
                       : "text-slate-200 hover:bg-brand-navy-elevated/60 hover:text-white"
                   )}
                 >
@@ -254,13 +259,6 @@ export function Header() {
                 </Link>
               );
             })}
-            <Link
-              href="/admin"
-              className="flex items-center gap-2 rounded-xl px-4 py-3 text-base font-medium text-brand-coral hover:bg-brand-navy-elevated"
-            >
-              <ShieldCheck className="h-4 w-4" />
-              <span>Admin Studio</span>
-            </Link>
           </div>
 
           <div className="mt-4 border-t border-brand-navy-border pt-4">
@@ -292,7 +290,7 @@ export function Header() {
               }
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-coral-strong px-5 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-brand-coral"
             >
-              {siteConfig.cta.primaryLabel}
+              <span>{siteConfig.cta.primaryLabel}</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

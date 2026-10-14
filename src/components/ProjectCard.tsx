@@ -1,57 +1,39 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Layers } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { ProjectItem } from "@/types";
-import { trackEvent } from "@/lib/analytics";
 
 interface ProjectCardProps {
   project: ProjectItem;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [imageError, setImageError] = useState(false);
-
   return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl bg-white border border-slate-200/90 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-brand-coral/40">
-      <Link
-        href={`/work/${project.slug}`}
-        onClick={() =>
-          trackEvent("portfolio_project_viewed", { project: project.slug })
-        }
-        className="relative block aspect-[4/3] w-full overflow-hidden bg-brand-navy focus-visible:outline-none"
-      >
-        {!imageError ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={project.thumbnail}
-            alt={project.thumbnailAlt}
-            loading="lazy"
-            onError={() => setImageError(true)}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-brand-navy p-6 text-center text-slate-300">
-            <Layers className="h-10 w-10 text-brand-coral mb-2" />
-            <span className="text-sm font-semibold text-white">
-              {project.title}
-            </span>
-          </div>
-        )}
+    <article className="group relative flex flex-col overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-slate-300">
+      {/* Visual Header with Hover Zoom */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-brand-navy">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={project.thumbnail}
+          alt={project.thumbnailAlt || project.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/70 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
-          <span className="rounded-full bg-brand-navy/90 backdrop-blur-md border border-white/15 px-3 py-1 text-[11px] font-semibold text-white">
+        {/* Category Pill Overlay */}
+        <div className="absolute top-4 left-4 z-10">
+          <span className="inline-flex items-center rounded-full bg-brand-navy/85 backdrop-blur-md border border-white/20 px-3 py-1 text-xs font-semibold text-white shadow-xs">
             {project.category}
           </span>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-brand-navy shadow-sm transition-transform duration-300 group-hover:bg-brand-coral-strong group-hover:text-white group-hover:scale-105">
-            <ArrowUpRight className="h-4 w-4" />
-          </span>
         </div>
-      </Link>
 
+        {/* Hover Arrow Badge */}
+        <div className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-md text-brand-navy shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-coral group-hover:text-white">
+          <ArrowUpRight className="h-4 w-4" />
+        </div>
+      </div>
+
+      {/* Content Container */}
       <div className="flex flex-1 flex-col justify-between p-6">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-wider text-brand-coral-strong">
@@ -59,7 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </p>
 
           <h3 className="mt-1.5 font-display text-xl font-bold text-brand-navy group-hover:text-brand-coral-strong transition-colors">
-            <Link href={`/work/${project.slug}`}>{project.title}</Link>
+            <Link href={`/portfolio/${project.slug}`}>{project.title}</Link>
           </h3>
 
           <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-2">
@@ -68,7 +50,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <div className="mt-5 pt-4 border-t border-slate-100 flex flex-wrap gap-1.5">
-          {project.tags.slice(0, 3).map((tag) => (
+          {(project.tags || []).slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"

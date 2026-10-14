@@ -147,7 +147,7 @@ describe("Rive Digitals — Content & Configuration Integrity", () => {
       expect(slugs.has(service.slug)).toBe(false);
       slugs.add(service.slug);
       expect(service.deliverables.length).toBeGreaterThan(0);
-      expect(service.workflow.length).toBeGreaterThan(0);
+      expect(service.workflow?.length ?? 0).toBeGreaterThan(0);
       expect(getServiceBySlug(service.slug)?.id).toBe(service.id);
     }
   });
@@ -157,7 +157,7 @@ describe("Rive Digitals — Content & Configuration Integrity", () => {
     for (const project of portfolioProjects) {
       expect(slugs.has(project.slug)).toBe(false);
       slugs.add(project.slug);
-      expect(project.thumbnailAlt.length).toBeGreaterThan(10);
+      expect((project.thumbnailAlt || "").length).toBeGreaterThan(10);
       expect(getProjectBySlug(project.slug)?.id).toBe(project.id);
     }
   });

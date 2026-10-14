@@ -1,17 +1,11 @@
 import { SiteConfig, TestimonialItem, TeamMember } from "@/types";
 
-/**
- * CENTRALISED SITE CONFIGURATION — RIVE DIGITALS
- * Update business contact details, CTAs, social profiles, and feature toggles here.
- * Changes automatically propagate across the header, footer, contact page,
- * WhatsApp links, legal pages, and SEO structured data.
- */
 export const siteConfig: SiteConfig = {
   name: "Rive Digitals",
   legalName: "Rive Digitals",
   tagline: "Strategic Digital Architecture for Ambitious Brands",
   description:
-    "Rive Digitals is a digital services and business growth partner helping startups, SMBs, and established organisations strengthen their brand identity, build high-converting websites, and scale their digital presence.",
+    "Rive Digitals is a digital solutions, branding, marketing and technology partner helping startups, SMBs, and established organisations strengthen their brand identity, build high-converting websites, and scale their digital presence.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://rivedigitals.com",
   logo: {
     src: "/images/logo.jpg",
@@ -52,17 +46,14 @@ export const siteConfig: SiteConfig = {
     },
   ],
   cta: {
-    primaryLabel: "Request a Quote",
-    primaryHref: "/contact?intent=quote",
-    secondaryLabel: "Explore Our Work",
-    secondaryHref: "/work",
+    primaryLabel: "Let's Work Together",
+    primaryHref: "/contact",
+    secondaryLabel: "View Portfolio",
+    secondaryHref: "/portfolio",
   },
   features: {
-    // Set to true only when verified client testimonials are added to `verifiedTestimonials` below.
     showTestimonials: false,
-    // Set to true only when actual team member profiles are added to `teamMembers` below.
     showTeamProfiles: false,
-    // Controls consent banner and event tracking dispatch.
     enableAnalytics: true,
   },
   serviceConfirmationNotice:
@@ -71,27 +62,14 @@ export const siteConfig: SiteConfig = {
     "IMPORTANT LEGAL REVIEW NOTICE: This document is a structured operational template prepared for Rive Digitals. It must be reviewed and approved by qualified legal counsel before relying on it for statutory compliance in your jurisdiction.",
 };
 
-/**
- * VERIFIED TESTIMONIALS
- * Kept empty by default per strict policy: never display fabricated testimonials.
- * Add verified client quotes here and set `siteConfig.features.showTestimonials = true`.
- */
 export const verifiedTestimonials: TestimonialItem[] = [];
 
-/**
- * TEAM PROFILES
- * Kept empty by default per strict policy: only display team profiles when actual
- * biographical data is supplied. Add real team members here and set
- * `siteConfig.features.showTeamProfiles = true`.
- */
 export const teamMembers: TeamMember[] = [];
 
 export const mainNavLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   { label: "Services", href: "/services", hasDropdown: true },
-  { label: "Our Work", href: "/work" },
-  { label: "Insights", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ] as const;
