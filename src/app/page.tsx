@@ -61,7 +61,12 @@ export default async function HomePage() {
        * 1. HERO SECTION — Striking visual composition, clear headline & CTAs
        * ===================================================================== */}
       <section className="relative overflow-hidden bg-brand-navy text-white pt-12 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32 border-b border-brand-navy-border">
-        {/* Subtle geometric grid backdrop */}
+        {/* Subtle geometric grid backdrop & atmospheric showcase image */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-10 mix-blend-luminosity filter blur-xs"
+          style={{ backgroundImage: "url('/images/hero-showcase.jpg')" }}
+        />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#18344a_1px,transparent_1px),linear-gradient(to_bottom,#18344a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_20%,#000_40%,transparent_100%)] opacity-40"

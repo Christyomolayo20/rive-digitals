@@ -24,6 +24,9 @@
   --brand-canvas: #f8fafc;
   --brand-surface: #ffffff;
   --brand-slate: #475569;
+
+  --font-sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 @layer base {
@@ -31,13 +34,15 @@
     scroll-behavior: smooth;
     background-color: var(--brand-canvas);
     color: var(--brand-navy);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100vh;
+    font-family: var(--font-sans);
   }
 }
 

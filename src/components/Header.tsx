@@ -25,8 +25,9 @@ export function Header() {
 
   useEffect(() => {
     function handleScroll() {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     }
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -62,19 +63,19 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full text-white transition-all duration-300",
+        "sticky top-0 z-50 w-full text-white transition-colors duration-200 border-b",
         scrolled
-          ? "bg-brand-navy/95 backdrop-blur-md border-b border-brand-navy-border shadow-lg shadow-black/10 py-3"
-          : "bg-brand-navy/90 backdrop-blur-sm border-b border-brand-navy-border/80 py-3.5"
+          ? "bg-brand-navy/98 backdrop-blur-xl border-brand-navy-border shadow-lg shadow-black/25 py-2.5 sm:py-3"
+          : "bg-brand-navy/95 backdrop-blur-md border-brand-navy-border/90 py-3 sm:py-3.5 shadow-xs"
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <BrandLogo variant="dark" size="md" />
 
-        {/* Desktop Navigation (No admin controls) */}
+        {/* Desktop & Tablet Navigation (Immediately visible on load from 768px+) */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden lg:flex lg:items-center lg:gap-1.5"
+          className="hidden md:flex md:items-center md:gap-1 lg:gap-1.5"
         >
           {mainNavLinks.map((item) => {
             const active = isActive(item.href);
@@ -93,10 +94,10 @@ export function Header() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "px-3.5 py-2 text-sm font-medium rounded-l-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
+                        "px-2.5 lg:px-3.5 py-1.5 lg:py-2 text-xs lg:text-sm font-medium rounded-l-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                         active
                           ? "text-brand-coral bg-brand-navy-elevated font-semibold"
-                          : "text-slate-200 hover:text-white hover:bg-brand-navy-elevated/60"
+                          : "text-slate-100 hover:text-white hover:bg-brand-navy-elevated"
                       )}
                     >
                       {item.label}
@@ -108,15 +109,15 @@ export function Header() {
                       aria-controls="desktop-services-menu"
                       onClick={() => setServicesDropdownOpen((prev) => !prev)}
                       className={cn(
-                        "px-2 py-2 text-sm font-medium rounded-r-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
+                        "px-1.5 lg:px-2 py-1.5 lg:py-2 text-xs lg:text-sm font-medium rounded-r-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                         active
                           ? "text-brand-coral bg-brand-navy-elevated"
-                          : "text-slate-200 hover:text-white hover:bg-brand-navy-elevated/60"
+                          : "text-slate-100 hover:text-white hover:bg-brand-navy-elevated"
                       )}
                     >
                       <ChevronDown
                         className={cn(
-                          "h-4 w-4 transition-transform duration-200",
+                          "h-3.5 w-3.5 lg:h-4 lg:w-4 transition-transform duration-200",
                           servicesDropdownOpen && "rotate-180"
                         )}
                       />
@@ -180,10 +181,10 @@ export function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "px-3.5 py-2 text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
+                  "px-2.5 lg:px-3.5 py-1.5 lg:py-2 text-xs lg:text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral",
                   active
                     ? "text-brand-coral bg-brand-navy-elevated font-semibold"
-                    : "text-slate-200 hover:text-white hover:bg-brand-navy-elevated/60"
+                    : "text-slate-100 hover:text-white hover:bg-brand-navy-elevated"
                 )}
               >
                 {item.label}
@@ -192,25 +193,25 @@ export function Header() {
           })}
         </nav>
 
-        {/* Primary CTA (Strictly public) */}
-        <div className="hidden lg:flex lg:items-center">
+        {/* Primary CTA (Immediately visible on tablet & desktop) */}
+        <div className="hidden md:flex md:items-center">
           <Link
             href={siteConfig.cta.primaryHref}
             onClick={() =>
               trackEvent("primary_cta_clicked", { location: "header" })
             }
-            className="inline-flex items-center gap-2 rounded-xl bg-brand-coral-strong px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-coral hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral"
+            className="inline-flex items-center gap-1.5 lg:gap-2 rounded-xl bg-brand-coral-strong px-3.5 lg:px-5 py-2 lg:py-2.5 text-xs lg:text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-coral hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral shrink-0"
           >
             <span>{siteConfig.cta.primaryLabel}</span>
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="flex items-center gap-2 lg:hidden">
+        {/* Mobile Menu Toggle (< 768px) */}
+        <div className="flex items-center gap-2 md:hidden">
           <Link
             href={siteConfig.cta.primaryHref}
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-brand-coral-strong px-3.5 py-2 text-xs font-semibold text-white"
+            className="inline-flex items-center gap-1 rounded-xl bg-brand-coral-strong px-3 py-1.5 text-xs font-semibold text-white shadow-xs"
           >
             Let&apos;s Talk
           </Link>
@@ -222,7 +223,7 @@ export function Header() {
               mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
             }
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center rounded-xl p-2.5 text-slate-200 hover:bg-brand-navy-elevated hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral"
+            className="inline-flex items-center justify-center rounded-xl p-2 text-white hover:bg-brand-navy-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral"
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" aria-hidden="true" />
@@ -233,12 +234,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer (Strictly public) */}
+      {/* Mobile Navigation Drawer (< 768px) */}
       {mobileMenuOpen && (
         <nav
           id="mobile-navigation-drawer"
           aria-label="Mobile Navigation"
-          className="lg:hidden border-t border-brand-navy-border bg-brand-navy px-4 pt-3 pb-6 shadow-2xl max-h-[85vh] overflow-y-auto"
+          className="md:hidden border-t border-brand-navy-border bg-brand-navy px-4 pt-3 pb-6 shadow-2xl max-h-[85vh] overflow-y-auto"
         >
           <div className="space-y-1">
             {mainNavLinks.map((item) => {
