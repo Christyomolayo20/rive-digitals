@@ -3,7 +3,7 @@
 A modern, responsive, visual-first business website and Admin Studio for **Rive Digitals**, built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, **Zod**, and **Supabase**.
 
 - **GitHub Repository**: [https://github.com/Christyomolayo20/rive-digitals.git](https://github.com/Christyomolayo20/rive-digitals.git)
-- **Live Admin Studio Route**: `/admin` (Default passcode: `R1ved!git@l$`, configurable via `ADMIN_PASSCODE`)
+- **Live Admin Studio Route**: `/admin` (Default passcode: `R1vedigit@l$`, configurable via `ADMIN_PASSCODE`)
 
 ---
 
@@ -34,7 +34,7 @@ npm run dev
 ```
 
 - **Public Website**: `http://localhost:3000`
-- **Admin Studio**: `http://localhost:3000/admin` (Passcode: `R1ved!git@l$`)
+- **Admin Studio**: `http://localhost:3000/admin` (Passcode: `R1vedigit@l$`)
 
 ### Verification Commands
 

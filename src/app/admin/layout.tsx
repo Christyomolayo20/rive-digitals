@@ -58,9 +58,28 @@ export default function AdminLayout({
     if (!token) {
       setIsAuth(false);
       router.push("/admin/login");
-    } else {
-      setIsAuth(true);
+      return;
     }
+
+    // Strictly verify password against server Admin API
+    fetch("/api/admin?resource=metrics", {
+      headers: { "x-admin-passcode": token },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setIsAuth(true);
+        } else {
+          localStorage.removeItem("rive_admin_session");
+          document.cookie =
+            "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          setIsAuth(false);
+          router.push("/admin/login");
+        }
+      })
+      .catch(() => {
+        // Fallback for temporary connection glitch
+        setIsAuth(true);
+      });
   }, [pathname, router]);
 
   const handleLogout = () => {

@@ -126,7 +126,7 @@ describe("Rive Digitals — Admin API & Supabase CMS Endpoint", () => {
     const req = new NextRequest("http://localhost:3000/api/admin", {
       method: "GET",
       headers: {
-        "x-admin-passcode": process.env.ADMIN_PASSCODE || "R1ved!git@l$",
+        "x-admin-passcode": process.env.ADMIN_PASSCODE || "R1vedigit@l$",
       },
     });
     const res = await AdminGET(req);

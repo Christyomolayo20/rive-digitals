@@ -27,19 +27,9 @@ function isAuthorized(request: NextRequest): boolean {
     request.headers.get("x-admin-passcode") ||
     request.cookies.get("admin_session")?.value;
 
-  const validPasscode = process.env.ADMIN_PASSCODE || "R1ved!git@l$";
+  const validPasscode = process.env.ADMIN_PASSCODE || "R1vedigit@l$";
 
-  if (passcode === validPasscode || passcode === "session_active") {
-    return true;
-  }
-
-  // Also support Supabase JWT Bearer token in Authorization header
-  const authHeader = request.headers.get("authorization");
-  if (authHeader && authHeader.startsWith("Bearer ") && authHeader.length > 20) {
-    return true;
-  }
-
-  return false;
+  return passcode === validPasscode;
 }
 
 export async function GET(request: NextRequest) {
